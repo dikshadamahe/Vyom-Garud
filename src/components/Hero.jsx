@@ -1,256 +1,97 @@
-'use client';
-
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 import Image from 'next/image';
 
 export default function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const yFast = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
-
   return (
-    <section
-      ref={ref}
-      id="hero"
-      className="hero-section relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden pt-20 pb-32"
-    >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-40 animate-ultra-slow-zoom"
-            poster="/images/drone1.jpg"
-          >
-            <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
-            {/* Fallback image */}
-            <Image
-              src="/images/drone1.jpg"
-              alt="Hero background"
-              fill
-              className="object-cover"
-              priority
-            />
-          </video>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-steel-900/90 z-10"></div>
+    <section className="hero-section relative flex min-h-screen items-center pt-32 pb-24">
+      {/* Background Video - Desktop */}
+      <video 
+        className="bg-video hidden md:block"
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        poster="/images/drone1.jpg"
+      >
+        <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
+      </video>
+
+      {/* Background Image - Mobile */}
+      <img 
+        src="/images/drone1.jpg" 
+        alt="Hero background"
+        className="bg-video md:hidden"
+      />
+
+      {/* Dark Gradient Overlay */}
+      <div className="overlay-dark" aria-hidden="true"></div>
+
+      {/* Optional: Logo Watermark (top-right) */}
+      <div className="absolute right-8 top-24 opacity-[0.06] pointer-events-none hidden lg:block z-10">
+        <Image 
+          src="/images/vyomgarud_logo.jpg" 
+          alt="VyomGarud Watermark" 
+          width={180} 
+          height={180}
+          className="select-none"
+        />
       </div>
 
-      {/* Tactical Grid Overlay */}
-      <div className="absolute inset-0 z-[11] tactical-grid"></div>
-      
-      {/* Animated HUD Rings - Constrained */}
-      <div className="absolute top-1/2 right-1/4 w-60 h-60 -translate-y-1/2 z-20 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-          className="hud-ring absolute inset-0 w-60 h-60 border border-line-gray/10 rounded-full opacity-20"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
-          className="hud-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-brand-orange/15 rounded-full opacity-20"
-        />
-        
-        {/* Radar Sweep Animation */}
-        <div className="absolute inset-0 w-60 h-60 overflow-hidden rounded-full">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute inset-0"
-            style={{ transformOrigin: '50% 50%' }}
-          >
-            <div
-              className="absolute top-1/2 left-1/2 w-full h-[2px] origin-left"
-              style={{
-                background: 'linear-gradient(90deg, rgba(255,123,0,0.6) 0%, rgba(255,123,0,0) 100%)',
-                transform: 'translate(-50%, -50%)',
-                boxShadow: '0 0 20px rgba(255,123,0,0.4)',
-              }}
-            />
-          </motion.div>
-        </div>
-        
-        {/* Blue Blob HUD Overlay - Constrained */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="decorative-video absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] object-cover mix-blend-screen opacity-[0.05]"
-        >
-          <source src="/videos/video4_blue_blob.mp4" type="video/mp4" />
-        </video>
-      </div>
+      {/* Main Content */}
+      <div className="content-front">
+        <div className="container">
+          <div className="max-w-3xl">
+            {/* Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6">
+              <div className="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></div>
+              <span className="font-inter text-sm text-brand-orange font-medium uppercase tracking-wide">
+                Military-Grade Defense
+              </span>
+            </div>
 
-      <div className="relative z-30 max-w-7xl mx-auto px-8 lg:px-12 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            style={{ y, opacity }}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {/* Small Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
-            >
-              <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-2 h-2 bg-brand-orange rounded-full"
-              />
-              <span className="font-inter text-sm text-brand-orange font-medium">Military-Grade Defense</span>
-            </motion.div>
-
-            <motion.h1
-              variants={itemVariants}
-              className="font-montserrat font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight mb-8"
-            >
+            {/* Headline */}
+            <h1 className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6">
               Defend Your<br />
               <span className="text-brand-orange">Airspace</span>
-            </motion.h1>
-            
-            <motion.p
-              variants={itemVariants}
-              className="font-inter text-lg md:text-xl text-gray500 mb-10 leading-relaxed max-w-xl"
-            >
+            </h1>
+
+            {/* Subheading */}
+            <p className="font-inter text-lg sm:text-xl text-gray500 mb-10 leading-relaxed max-w-2xl">
               Military-grade UAV detection and neutralization systems. 
               Trusted by defense forces and critical infrastructure worldwide.
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <motion.a
+            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <a
                 href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded hover:bg-brand-orange/90 hover:shadow-glow-orange transition-all duration-300 text-center relative overflow-hidden"
+                className="inline-flex items-center justify-center px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded hover:bg-brand-orange/90 transition-all duration-300"
               >
-                <span className="relative z-10">Request Demo</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              </motion.a>
-              <motion.a
+                Request Demo
+              </a>
+              <a
                 href="#capabilities"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-brand-orange text-brand-orange font-inter font-semibold text-base rounded hover:bg-brand-orange/10 transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/40 text-white font-inter font-semibold text-base rounded hover:bg-white/5 transition-all duration-300"
               >
                 View Capabilities
-              </motion.a>
-            </motion.div>
-
-            {/* Stats Bar */}
-            <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-line-gray"
-            >
-              {[
-                { value: '5km', label: 'Detection Range' },
-                { value: '99.8%', label: 'Accuracy' },
-                { value: '24/7', label: 'Active Defense' },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="font-montserrat font-bold text-2xl text-brand-orange mb-1">{stat.value}</div>
-                  <div className="font-inter text-xs text-gray500">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Side - Drone Visual with Parallax */}
-          <motion.div
-            className="relative"
-            style={{ y: yFast, scale }}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Drone Image */}
-              <div className="absolute inset-0 rounded-lg overflow-hidden">
-                <Image
-                  src="/images/drone1.jpg"
-                  alt="VyomGarud Defense Drone"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 via-transparent to-transparent"></div>
-              </div>
-
-              {/* Corner Accents with Animation */}
-              {[
-                { position: 'top-0 left-0', borders: 'border-t-2 border-l-2', delay: 1.2 },
-                { position: 'top-0 right-0', borders: 'border-t-2 border-r-2', delay: 1.3 },
-                { position: 'bottom-0 left-0', borders: 'border-b-2 border-l-2', delay: 1.4 },
-                { position: 'bottom-0 right-0', borders: 'border-b-2 border-r-2', delay: 1.5 },
-              ].map((corner, index) => (
-                <motion.div
-                  key={index}
-                  className={`absolute ${corner.position} w-16 h-16 ${corner.borders} border-brand-orange`}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: corner.delay,
-                    ease: [0.4, 0, 0.2, 1]
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                />
-              ))}
-
-              {/* Pulsing Scan Lines */}
-              <motion.div
-                animate={{ y: ['0%', '100%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-50"
-              />
+              </a>
             </div>
-          </motion.div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-line-gray">
+              <div>
+                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">5km</div>
+                <div className="font-inter text-sm text-gray500">Detection Range</div>
+              </div>
+              <div>
+                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">99.8%</div>
+                <div className="font-inter text-sm text-gray500">Accuracy</div>
+              </div>
+              <div>
+                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">24/7</div>
+                <div className="font-inter text-sm text-gray500">Active Defense</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
