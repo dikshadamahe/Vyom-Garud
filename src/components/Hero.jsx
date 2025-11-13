@@ -105,14 +105,17 @@ export default function Hero() {
               {/* Accent Line */}
               <div className="accent-line"></div>
 
+              {/* Kicker */}
+              <motion.p className="kicker mb-6" variants={fadeUp}>VyomGarud</motion.p>
+
               {/* Headline */}
-              <h1 className="text-5xl md:text-7xl font-montserrat font-700 text-whitesoft mb-6 leading-tight">
+              <h1 className="headline-hero mb-6">
                 Defend Your<br />
                 <span className="text-brand-orange">Airspace</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg md:text-xl font-inter text-whitesoft/85 mb-10 max-w-2xl">
+              <p className="body-text mb-10 max-w-2xl">
                 Military-grade counter-UAV defense systems for critical infrastructure. 
                 Trusted by defense forces and enterprise facilities worldwide.
               </p>
@@ -126,7 +129,7 @@ export default function Hero() {
             >
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-10 py-5 bg-brand-orange text-white font-inter font-semibold text-base rounded-xl hover:bg-brand-orange/90 hover:shadow-2xl hover:shadow-brand-orange/30 transition-all duration-300 hover:scale-105"
+                className="btn-primary"
               >
                 Request Demo
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,37 +138,10 @@ export default function Hero() {
               </a>
               <a
                 href="#capabilities"
-                className="inline-flex items-center justify-center px-10 py-5 bg-transparent border-2 border-whitesoft/20 text-whitesoft font-inter font-semibold text-base rounded-xl hover:border-whitesoft/40 hover:bg-whitesoft/5 transition-all duration-300"
+                className="btn-secondary"
               >
                 Explore Technology
               </a>
-            </motion.div>
-
-            {/* KPIs */}
-            <motion.div 
-              className="grid grid-cols-3 gap-10 mt-20 pt-10 border-t border-whitesoft/10"
-              initial="initial"
-              animate="animate"
-              variants={{
-                initial: { opacity: 0 },
-                animate: { 
-                  opacity: 1,
-                  transition: { duration: 0.8, delay: 0.4 }
-                }
-              }}
-            >
-              <div>
-                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">5km+</div>
-                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Detection Range</div>
-              </div>
-              <div>
-                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">99.8%</div>
-                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Accuracy</div>
-              </div>
-              <div>
-                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">24/7</div>
-                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Active Defense</div>
-              </div>
             </motion.div>
           </div>
         </div>

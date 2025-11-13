@@ -17,18 +17,14 @@ module.exports = {
     extend: {
       colors: {
         charcoal: '#0B0B0B',
-        steel: {
-          900: '#111214',
-          800: '#1f1f23',
-          700: '#2A2D31',
-        },
+        'steel-900': '#111214',
+        'steel-800': '#1f1f23',
+        'steel-700': '#2A2D31',
         'line-gray': '#2f2f33',
         whitesoft: '#ECEFF1',
         white: '#FFFFFF',
         'brand-orange': '#FF7B00',
-        neutral: {
-          600: '#9aa0a6',
-        },
+        'neutral-600': '#9aa0a6',
         gray500: '#B9BCC0',
       },
       fontFamily: {
