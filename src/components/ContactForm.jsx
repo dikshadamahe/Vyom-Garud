@@ -4,10 +4,12 @@ import { useState } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     message: '',
   });
+  
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +19,20 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    
+    // Simulate successful submission
+    setIsSubmitted(true);
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setFormData({ fullName: '', email: '', message: '' });
+      setIsSubmitted(false);
+    }, 3000);
   };
 
   return (
     <section id="contact" className="section bg-steel-900">
-      <div className="container max-w-4xl">
+      <div className="container mx-auto px-6 max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6">
@@ -32,30 +42,30 @@ export default function ContactForm() {
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4">
             Get in Touch
           </h2>
-          <p className="font-inter text-lg text-gray500">
+          <p className="font-inter text-lg text-neutral-600">
             Request a consultation or demo for your facility
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name Input */}
+          {/* Full Name Input */}
           <div>
             <label
-              htmlFor="name"
+              htmlFor="fullName"
               className="block font-inter font-medium text-sm text-white mb-2"
             >
               Full Name
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
               required
               aria-required="true"
-              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded focus:outline-none focus:border-brand-orange transition-colors duration-300"
+              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded-lg focus:outline-none focus:border-brand-orange transition-colors duration-300"
               placeholder="John Doe"
             />
           </div>
@@ -76,7 +86,7 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               aria-required="true"
-              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded focus:outline-none focus:border-brand-orange transition-colors duration-300"
+              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded-lg focus:outline-none focus:border-brand-orange transition-colors duration-300"
               placeholder="john@company.com"
             />
           </div>
@@ -97,7 +107,7 @@ export default function ContactForm() {
               required
               aria-required="true"
               rows={6}
-              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded focus:outline-none focus:border-brand-orange transition-colors duration-300 resize-none"
+              className="w-full px-6 py-4 bg-steel-800 border-2 border-line-gray text-white font-inter text-base rounded-lg focus:outline-none focus:border-brand-orange transition-colors duration-300 resize-none"
               placeholder="Tell us about your security requirements..."
             />
           </div>
@@ -105,10 +115,20 @@ export default function ContactForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded hover:bg-brand-orange/90 transition-all duration-300"
+            disabled={isSubmitted}
+            className="w-full px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded-lg transition-all duration-300 hover:bg-brand-orange/90 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 focus:ring-offset-steel-900 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send Message
+            {isSubmitted ? 'Message Sent!' : 'Send Message'}
           </button>
+
+          {/* Success Message */}
+          {isSubmitted && (
+            <div className="text-center py-4">
+              <p className="font-inter text-sm text-brand-orange">
+                Thank you for your message. We'll get back to you soon.
+              </p>
+            </div>
+          )}
         </form>
       </div>
     </section>
