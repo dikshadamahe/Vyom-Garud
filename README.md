@@ -19,20 +19,7 @@ VyomGarud is a single-page application showcasing advanced counter-UAV defense c
 - **Typography:** Montserrat, Inter (Google Fonts)
 - **Build Tools:** PostCSS, Autoprefixer
 
-## Screenshots (Placeholders)
-
-Add your screenshots to the `docs/screenshots/` directory using the following filenames. These placeholders are referenced below and will render automatically once you add the images.
-
-- docs/screenshots/01-hero-desktop.png
-- docs/screenshots/02-metrics-desktop.png
-- docs/screenshots/03-capabilities-desktop.png
-- docs/screenshots/04-about-desktop.png
-- docs/screenshots/05-contact-desktop.png
-- docs/screenshots/06-mobile-hero.png
-- docs/screenshots/07-mobile-capabilities.png
-- docs/screenshots/08-footer-desktop.png
-
-Preview:
+## Screenshots
 
 <p>
   <img src="docs/screenshots/01-hero-desktop.png" alt="Hero (Desktop)" />
