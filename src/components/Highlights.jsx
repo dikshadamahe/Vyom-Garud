@@ -3,20 +3,26 @@
 import { motion } from 'framer-motion';
 
 export default function Highlights() {
-  const staggerContainer = {
-    animate: {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
       transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       }
     }
   };
 
-  const cardFade = {
-    initial: { opacity: 0, y: 12 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+    }
   };
+
   const highlights = [
     {
       icon: (
@@ -49,19 +55,20 @@ export default function Highlights() {
 
   return (
     <section className="section bg-charcoal">
-      <div className="container">
-        <motion.div 
+      <div className="container mx-auto px-6 max-w-7xl">
+        <motion.ul 
           className="grid grid-cols-1 md:grid-cols-3 gap-12"
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          role="list"
         >
           {highlights.map((item, index) => (
-            <motion.div
+            <motion.li
               key={index}
               className="text-center"
-              variants={cardFade}
+              variants={itemVariants}
             >
               {/* Icon */}
               <div className="mb-6 flex justify-center">
@@ -76,12 +83,12 @@ export default function Highlights() {
               </h3>
 
               {/* Description */}
-              <p className="font-inter text-base text-gray500 leading-relaxed">
+              <p className="font-inter text-base text-neutral-600 leading-relaxed">
                 {item.description}
               </p>
-            </motion.div>
+            </motion.li>
           ))}
-        </motion.div>
+        </motion.ul>
       </div>
     </section>
   );
