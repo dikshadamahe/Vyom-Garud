@@ -6,6 +6,10 @@ A modern, responsive landing page for VyomGarud, a military-grade drone defense 
 
 VyomGarud is a single-page application showcasing advanced counter-UAV defense capabilities through a cinematic, professional interface. The site emphasizes precision engineering, military-grade reliability, and autonomous defense systems.
 
+## Live Demo
+
+- Deployment: https://vyom-garud-seven.vercel.app/
+
 ## Tech Stack
 
 - **Framework:** Next.js 15.1.6 (App Router)
