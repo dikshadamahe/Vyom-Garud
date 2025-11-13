@@ -34,12 +34,13 @@ export default function Hero() {
         muted 
         loop 
         playsInline
+        preload="metadata"
         poster="/images/drone1.jpg"
       >
         <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
       </video>
 
-      {/* Background Image - Mobile */}
+      {/* Background Image - Mobile (SSR-safe) */}
       <img 
         src="/images/drone1.jpg" 
         alt="Hero background"
