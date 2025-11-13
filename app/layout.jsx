@@ -8,6 +8,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/images/drone1.jpg" as="image" />
+        <link rel="preload" href="/images/vyomgarud_logo.jpg" as="image" />
+      </head>
       <body className="font-body">{children}</body>
     </html>
   );
