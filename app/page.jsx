@@ -52,7 +52,7 @@ export default function Home() {
           
           <div className="mt-8 pt-8 border-t border-line-gray text-center">
             <p className="font-inter text-sm text-gray500">
-              © {new Date().getFullYear()} VyomGarud. All rights reserved.
+              © 2025 VyomGarud. All rights reserved.
             </p>
           </div>
         </div>

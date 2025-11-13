@@ -100,3 +100,37 @@ section {
   outline: 2px solid #FF7B00;
   outline-offset: 2px;
 }
+
+/* Safety constraints to prevent oversized decorative elements */
+.icon {
+  width: 3rem !important;
+  height: 3rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+svg {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.remove-decorative {
+  display: none !important;
+}
+
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+  overflow: hidden;
+}

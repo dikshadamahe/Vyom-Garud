@@ -7,21 +7,33 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1440px',
+      },
+    },
     extend: {
       colors: {
-        charcoal: '#0C0C0C',
+        charcoal: '#0B0B0B',
         steel: {
-          900: '#1A1A1D',
-          800: '#2C2C30',
+          900: '#111214',
+          800: '#1f1f23',
         },
-        'line-gray': '#2F2F2F',
-        whitesoft: '#F5F5F7',
+        'line-gray': '#2f2f33',
+        whitesoft: '#ECEFF1',
         white: '#FFFFFF',
         'brand-orange': '#FF7B00',
+        neutral: {
+          600: '#9aa0a6',
+        },
         gray500: '#B9BCC0',
       },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       },
@@ -37,10 +49,21 @@ module.exports = {
         '64': '64px',
         '96': '96px',
       },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '20px',
+        '2xl': '24px',
+      },
       maxWidth: {
         '7xl': '80rem',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
 }

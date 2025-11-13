@@ -18,7 +18,7 @@ export default function CapabilityCard({ title, icon, description, image }) {
 
       {/* Icon */}
       <div className="flex items-center gap-4 mb-3">
-        <div className="w-12 h-12 flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform duration-300">
+        <div className="icon w-12 h-12 flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
           {icon}
         </div>
         <h3 className="font-montserrat font-semibold text-xl text-white">

@@ -39,7 +39,7 @@ export default function Hero() {
         aria-hidden="true"
         tabIndex="-1"
       >
-        <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
+        <source src="/videos/video1_hero_drone.mp4" type="video/mp4" />
       </video>
 
       {/* Background Image - Mobile (SSR-safe) */}
