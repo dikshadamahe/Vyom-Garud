@@ -31,8 +31,8 @@ module.exports = {
         gray500: '#B9BCC0',
       },
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
