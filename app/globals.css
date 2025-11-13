@@ -4,6 +4,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Safety Patch - Prevent Oversized SVGs/Icons */
+.icon {
+  width: 3rem !important;
+  height: 3rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+svg.decorative,
+.remove-decorative {
+  display: none !important;
+}
+
+svg {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+img,
+video {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+.section {
+  position: relative !important;
+  overflow: hidden !important;
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+
 /* CSS Reset */
 *,
 *::before,
