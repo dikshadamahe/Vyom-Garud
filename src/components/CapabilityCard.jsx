@@ -5,10 +5,10 @@ export default function CapabilityCard({ title, icon, description, image }) {
     <div className="group bg-steel-900 border border-line-gray rounded-xl p-6 min-h-[220px] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-orange/10 hover:border-brand-orange/50">
       {/* Image Background */}
       {image && (
-        <div className="relative w-full h-32 mb-4 rounded-lg overflow-hidden" aria-hidden="true">
+        <div className="relative w-full h-32 mb-4 rounded-lg overflow-hidden" aria-hidden="true" tabIndex={-1}>
           <Image
             src={image}
-            alt={title}
+            alt=""
             fill
             className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
           />
