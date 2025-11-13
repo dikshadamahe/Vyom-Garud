@@ -55,7 +55,8 @@ export default function Highlights() {
       value: '24/7', 
       label: 'Autonomous Defense', 
       icon: '🛡️',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
+      raw: true, // Display as-is (not a numeric animation)
     },
   ];
 
@@ -129,7 +130,7 @@ export default function Highlights() {
                 
                 {/* Animated Value with Gradient */}
                 <h3 className={`relative font-montserrat font-bold text-6xl bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-4`}>
-                  <AnimatedNumber value={stat.value} />
+                  {stat.raw ? <span>{stat.value}</span> : <AnimatedNumber value={stat.value} />}
                 </h3>
                 
                 {/* Label */}

@@ -130,11 +130,14 @@ export default function About() {
                   <div className={`absolute inset-0 blur-xl bg-gradient-to-r ${feature.gradient} opacity-50`} />
                   <span className="relative">{feature.icon}</span>
                 </motion.div>
-                
-                <h3 className={`relative font-montserrat font-bold text-lg text-whitesoft mb-2 group-hover:bg-gradient-to-r group-hover:${feature.gradient} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}>
+
+                {/* Title - keep bright on hover */}
+                <h3 className="relative font-montserrat font-bold text-lg text-whitesoft mb-2 transition-colors duration-300 group-hover:text-whitesoft">
                   {feature.title}
                 </h3>
-                <p className="relative font-inter text-sm text-whitesoft/70">
+
+                {/* Description - brighten on hover */}
+                <p className="relative font-inter text-sm text-whitesoft/70 transition-colors duration-300 group-hover:text-whitesoft">
                   {feature.description}
                 </p>
                 
