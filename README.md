@@ -30,29 +30,65 @@ Add your screenshots to the `docs/screenshots/` directory using the following fi
 - docs/screenshots/05-contact-desktop.png
 - docs/screenshots/06-mobile-hero.png
 - docs/screenshots/07-mobile-capabilities.png
+- docs/screenshots/08-footer-desktop.png
 
-Preview (will show once images are added):
+Preview:
 
-![Hero (Desktop)](docs/screenshots/01-hero-desktop.png)
-_Cinematic hero with video background, headline, CTAs, and brand watermark._
+<p>
+  <img src="docs/screenshots/01-hero-desktop.png" alt="Hero (Desktop)" />
+  <br/>
+  <em>Cinematic hero with video background, headline, CTAs, and brand watermark.</em>
+  <br/><br/>
+</p>
 
-![Performance Metrics (Desktop)](docs/screenshots/02-metrics-desktop.png)
-_Mission‑critical statistics with animated counters and gradient cards._
+<p>
+  <img src="docs/screenshots/02-metrics-desktop.png" alt="Performance Metrics (Desktop)" />
+  <br/>
+  <em>Mission‑critical statistics with animated counters and gradient cards.</em>
+  <br/><br/>
+</p>
 
-![Capabilities (Desktop)](docs/screenshots/03-capabilities-desktop.png)
-_Zig‑zag capability layout showing visuals and detailed specs._
+<p>
+  <img src="docs/screenshots/03-capabilities-desktop.png" alt="Capabilities (Desktop)" />
+  <br/>
+  <em>Zig‑zag capability layout showing visuals and detailed specs.</em>
+  <br/><br/>
+</p>
 
-![About (Desktop)](docs/screenshots/04-about-desktop.png)
-_Mission statement with four feature cards: UAV tech, security, response, global._
+<p>
+  <img src="docs/screenshots/04-about-desktop.png" alt="About (Desktop)" />
+  <br/>
+  <em>Mission statement with four feature cards: UAV tech, security, response, global.</em>
+  <br/><br/>
+</p>
 
-![Contact (Desktop)](docs/screenshots/05-contact-desktop.png)
-_Contact operations with form and styled inputs (validation enabled)._
+<p>
+  <img src="docs/screenshots/05-contact-desktop.png" alt="Contact (Desktop)" />
+  <br/>
+  <em>Contact operations with form and styled inputs (validation enabled).</em>
+  <br/><br/>
+</p>
 
-![Hero (Mobile)](docs/screenshots/06-mobile-hero.png)
-_Mobile hero view with responsive headline and CTAs; menu button visible._
+<p>
+  <img src="docs/screenshots/06-mobile-hero.png" alt="Hero (Mobile)" />
+  <br/>
+  <em>Mobile hero view with responsive headline and CTAs; menu button visible.</em>
+  <br/><br/>
+</p>
 
-![Capabilities (Mobile)](docs/screenshots/07-mobile-capabilities.png)
-_Mobile capability card with stacked layout, visual, and spec list._
+<p>
+  <img src="docs/screenshots/07-mobile-capabilities.png" alt="Capabilities (Mobile)" />
+  <br/>
+  <em>Mobile capability card with stacked layout, visual, and spec list.</em>
+  <br/><br/>
+</p>
+
+<p>
+  <img src="docs/screenshots/08-footer-desktop.png" alt="Footer (Desktop)" />
+  <br/>
+  <em>Footer: brand block, Product/Company/Resources/Legal columns, and the Indian flag.</em>
+  <br/><br/>
+</p>
 
 ## Features
 
