@@ -57,7 +57,7 @@ export default function Highlights() {
   ];
 
   return (
-    <section className="relative bg-charcoal py-24 overflow-hidden">
+    <section className="relative bg-charcoal py-[120px] overflow-hidden">
       {/* Mech Hand Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -75,7 +75,7 @@ export default function Highlights() {
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-orange/20 to-transparent transform -translate-x-1/2 z-[1] hidden md:block"></div>
 
       <motion.div 
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
+        className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -125,7 +125,7 @@ export default function Highlights() {
               </motion.div>
 
               {/* Title */}
-              <h3 className="font-montserrat font-semibold text-xl text-white mb-3 text-center group-hover:text-brand-orange transition-colors duration-300">
+              <h3 className="font-montserrat font-semibold text-xl text-white leading-[1.2] tracking-tight mb-4 text-center group-hover:text-brand-orange transition-colors duration-300">
                 {item.title}
               </h3>
 

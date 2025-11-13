@@ -34,7 +34,7 @@ export default function NavBar() {
         scrolled ? 'py-2' : 'py-0'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-8 lg:px-12">
         <div className={`flex items-center justify-between transition-all duration-500 ${
           scrolled ? 'h-16' : 'h-20'
         }`}>
@@ -110,7 +110,7 @@ export default function NavBar() {
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="md:hidden bg-steel-900 border-t border-line-gray overflow-hidden"
           >
-            <div className="px-6 py-6 space-y-4">
+            <div className="px-8 py-8 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}

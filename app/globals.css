@@ -42,8 +42,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
+
+h1 { line-height: 1.05; }
+h2 { line-height: 1.1; margin-bottom: 24px; }
+h3 { line-height: 1.2; margin-bottom: 16px; }
 
 *:focus {
   outline: 2px solid var(--brand-orange);

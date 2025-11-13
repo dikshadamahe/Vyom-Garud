@@ -30,7 +30,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-steel-900 py-32 overflow-hidden"
+      className="relative bg-steel-900 py-[120px] overflow-hidden"
     >
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -46,7 +46,7 @@ export default function About() {
         className="absolute left-0 top-32 bottom-32 w-1 bg-gradient-to-b from-transparent via-brand-orange to-transparent origin-top"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div
@@ -64,7 +64,7 @@ export default function About() {
 
             <motion.h2 
               variants={itemVariants}
-              className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6"
+              className="font-montserrat font-bold text-4xl md:text-5xl text-white leading-[1.1] tracking-tight mb-8"
             >
               VyomGarud Defense Systems
             </motion.h2>

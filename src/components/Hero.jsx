@@ -43,7 +43,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden pt-20 pb-32"
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
@@ -117,7 +117,7 @@ export default function Hero() {
         </video>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div
@@ -141,7 +141,7 @@ export default function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="font-montserrat font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6"
+              className="font-montserrat font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight mb-8"
             >
               Defend Your<br />
               <span className="text-brand-orange">Airspace</span>

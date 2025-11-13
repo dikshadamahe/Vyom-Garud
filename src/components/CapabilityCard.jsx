@@ -15,7 +15,7 @@ export default function CapabilityCard({ icon, title, description, delay = 0 }) 
       whileHover={{ scale: 1.03, y: -12 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative group bg-steel-900 border border-line-gray rounded-lg p-8 hover:border-brand-orange/50 transition-all duration-500 hover:shadow-glow-orange"
+      className="relative group bg-steel-900 border border-line-gray rounded-lg p-8 hover:border-brand-orange/50 transition-all duration-500 hover:shadow-glow-orange backdrop-blur-sm"
     >
       {/* Animated Corner Strokes - Four Corners */}
       {[
@@ -63,7 +63,7 @@ export default function CapabilityCard({ icon, title, description, delay = 0 }) 
       </motion.div>
 
       {/* Content */}
-      <h3 className="font-montserrat font-semibold text-2xl text-white mb-4 group-hover:text-brand-orange transition-colors duration-300">
+      <h3 className="font-montserrat font-semibold text-2xl text-white leading-[1.2] tracking-tight mb-4 group-hover:text-brand-orange transition-colors duration-300">
         {title}
       </h3>
       <p className="font-inter text-base text-gray500 leading-relaxed">

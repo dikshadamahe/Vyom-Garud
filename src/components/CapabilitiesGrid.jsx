@@ -41,7 +41,7 @@ export default function CapabilitiesGrid() {
   return (
     <section
       id="capabilities"
-      className="relative bg-charcoal py-32 overflow-hidden"
+      className="relative bg-charcoal py-[120px] overflow-hidden"
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
@@ -66,7 +66,7 @@ export default function CapabilitiesGrid() {
         className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-orange/30 to-transparent z-[2]"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
@@ -84,7 +84,7 @@ export default function CapabilitiesGrid() {
           <motion.h2
             variants={headerVariants}
             transition={{ delay: 0.1 }}
-            className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6"
+            className="font-montserrat font-bold text-4xl md:text-5xl text-white leading-[1.1] tracking-tight mb-8"
           >
             Enterprise-Grade<br />Defense Systems
           </motion.h2>

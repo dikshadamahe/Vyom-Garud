@@ -49,7 +49,7 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="relative bg-steel-900 py-32 overflow-hidden"
+      className="relative bg-steel-900 py-[120px] overflow-hidden"
     >
       {/* Map Grid Pattern Background */}
       <div className="absolute inset-0 opacity-10">
@@ -69,7 +69,7 @@ export default function ContactForm() {
         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-orange to-transparent"
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 max-w-4xl mx-auto px-8 lg:px-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,7 +88,7 @@ export default function ContactForm() {
             <span className="font-inter text-sm text-brand-orange font-medium">Contact Us</span>
           </motion.div>
 
-          <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6">
+          <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white leading-[1.1] tracking-tight mb-8">
             Get in Touch
           </h2>
           <p className="font-inter text-lg text-gray500">

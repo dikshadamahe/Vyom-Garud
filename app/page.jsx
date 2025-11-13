@@ -16,8 +16,8 @@ export default function Home() {
       <ContactForm />
       
       {/* Footer */}
-      <footer className="bg-charcoal border-t border-line-gray py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <footer className="bg-charcoal border-t border-line-gray py-16">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <h3 className="font-montserrat font-bold text-xl text-white mb-2">
