@@ -19,6 +19,41 @@ VyomGarud is a single-page application showcasing advanced counter-UAV defense c
 - **Typography:** Montserrat, Inter (Google Fonts)
 - **Build Tools:** PostCSS, Autoprefixer
 
+## Screenshots (Placeholders)
+
+Add your screenshots to the `docs/screenshots/` directory using the following filenames. These placeholders are referenced below and will render automatically once you add the images.
+
+- docs/screenshots/01-hero-desktop.png
+- docs/screenshots/02-metrics-desktop.png
+- docs/screenshots/03-capabilities-desktop.png
+- docs/screenshots/04-about-desktop.png
+- docs/screenshots/05-contact-desktop.png
+- docs/screenshots/06-mobile-hero.png
+- docs/screenshots/07-mobile-capabilities.png
+
+Preview (will show once images are added):
+
+![Hero (Desktop)](docs/screenshots/01-hero-desktop.png)
+_Cinematic hero with video background, headline, CTAs, and brand watermark._
+
+![Performance Metrics (Desktop)](docs/screenshots/02-metrics-desktop.png)
+_Mission‑critical statistics with animated counters and gradient cards._
+
+![Capabilities (Desktop)](docs/screenshots/03-capabilities-desktop.png)
+_Zig‑zag capability layout showing visuals and detailed specs._
+
+![About (Desktop)](docs/screenshots/04-about-desktop.png)
+_Mission statement with four feature cards: UAV tech, security, response, global._
+
+![Contact (Desktop)](docs/screenshots/05-contact-desktop.png)
+_Contact operations with form and styled inputs (validation enabled)._
+
+![Hero (Mobile)](docs/screenshots/06-mobile-hero.png)
+_Mobile hero view with responsive headline and CTAs; menu button visible._
+
+![Capabilities (Mobile)](docs/screenshots/07-mobile-capabilities.png)
+_Mobile capability card with stacked layout, visual, and spec list._
+
 ## Features
 
 ### Design & UI
