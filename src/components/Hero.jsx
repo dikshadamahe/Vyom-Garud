@@ -36,6 +36,8 @@ export default function Hero() {
         playsInline
         preload="metadata"
         poster="/images/drone1.jpg"
+        aria-hidden="true"
+        tabIndex="-1"
       >
         <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
       </video>
@@ -43,18 +45,20 @@ export default function Hero() {
       {/* Background Image - Mobile (SSR-safe) */}
       <img 
         src="/images/drone1.jpg" 
-        alt="Hero background"
+        alt=""
         className="bg-video md:hidden"
+        aria-hidden="true"
+        tabIndex="-1"
       />
 
       {/* Dark Gradient Overlay */}
       <div className="overlay-dark" aria-hidden="true"></div>
 
       {/* Optional: Logo Watermark (top-right) */}
-      <div className="absolute right-8 top-24 opacity-[0.06] pointer-events-none hidden lg:block z-10">
+      <div className="absolute right-8 top-24 opacity-[0.06] pointer-events-none hidden lg:block z-10" aria-hidden="true">
         <Image 
           src="/images/vyomgarud_logo.jpg" 
-          alt="VyomGarud Watermark" 
+          alt="" 
           width={180} 
           height={180}
           className="select-none"

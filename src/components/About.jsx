@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section id="about" className="section bg-steel-900 relative">
       {/* Vertical Orange Accent Bar */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-brand-orange to-transparent"></div>
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-brand-orange to-transparent" aria-hidden="true"></div>
 
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -60,7 +60,7 @@ export default function About() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 via-transparent to-steel-900/30"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 via-transparent to-steel-900/30" aria-hidden="true"></div>
             </div>
           </div>
         </div>
