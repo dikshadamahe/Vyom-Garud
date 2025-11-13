@@ -28,7 +28,7 @@ export default function CapabilityCard({ title, icon, description, image }) {
       </div>
 
       {/* Description */}
-      <p className="font-inter text-sm text-neutral-600 leading-relaxed">
+      <p className="font-inter text-sm text-whitesoft/80 leading-relaxed">
         {description}
       </p>
     </div>

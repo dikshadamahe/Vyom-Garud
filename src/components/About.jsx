@@ -22,17 +22,17 @@ export default function About() {
             </h2>
 
             <div className="space-y-6">
-              <p className="font-inter text-base md:text-lg text-neutral-600 leading-relaxed">
+              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
                 VyomGarud delivers military-grade counter-UAV systems designed for defense agencies, 
                 critical infrastructure, and high-security facilities worldwide. Our solutions combine 
                 RF detection, active jamming, and autonomous threat response.
               </p>
-              <p className="font-inter text-base md:text-lg text-neutral-600 leading-relaxed">
+              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
                 With deployments across government installations and enterprise sites, we provide 
                 proven protection against unauthorized drone incursions. Our systems integrate 
                 seamlessly with existing security architectures while maintaining zero false positives.
               </p>
-              <p className="font-inter text-base md:text-lg text-neutral-600 leading-relaxed">
+              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
                 Trusted by defense forces in 12+ countries. Certified to NATO AQAP standards.
               </p>
             </div>
@@ -41,15 +41,15 @@ export default function About() {
             <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-line-gray">
               <div>
                 <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">5km+</div>
-                <div className="font-inter text-sm text-neutral-600">Detection Range</div>
+                <div className="font-inter text-sm text-whitesoft/80">Detection Range</div>
               </div>
               <div>
                 <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">99.8%</div>
-                <div className="font-inter text-sm text-neutral-600">Accuracy Rate</div>
+                <div className="font-inter text-sm text-whitesoft/80">Accuracy Rate</div>
               </div>
               <div>
                 <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">12+</div>
-                <div className="font-inter text-sm text-neutral-600">Countries</div>
+                <div className="font-inter text-sm text-whitesoft/80">Countries</div>
               </div>
             </div>
           </div>

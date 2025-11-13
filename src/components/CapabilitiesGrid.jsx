@@ -177,7 +177,7 @@ export default function CapabilitiesGrid() {
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4">
             Advanced <span className="text-brand-orange">Capabilities</span>
           </h2>
-          <p className="font-inter text-lg text-neutral-600">
+          <p className="font-inter text-lg text-whitesoft/90">
             Military-grade technology engineered for comprehensive airspace
             protection and threat neutralization.
           </p>

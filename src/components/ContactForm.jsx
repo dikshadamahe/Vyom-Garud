@@ -42,7 +42,7 @@ export default function ContactForm() {
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4">
             Get in Touch
           </h2>
-          <p className="font-inter text-lg text-neutral-600">
+          <p className="font-inter text-lg text-whitesoft/90">
             Request a consultation or demo for your facility
           </p>
         </div>

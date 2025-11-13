@@ -83,7 +83,7 @@ export default function Highlights() {
               </h3>
 
               {/* Description */}
-              <p className="font-inter text-base text-neutral-600 leading-relaxed">
+              <p className="font-inter text-base text-whitesoft/80 leading-relaxed">
                 {item.description}
               </p>
             </motion.li>
