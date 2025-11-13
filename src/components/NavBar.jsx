@@ -1,136 +1,91 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsCompact(window.scrollY > 50);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Capabilities', href: '#capabilities' },
-    { name: 'Contact', href: '#contact' },
+    { href: '#about', label: 'About' },
+    { href: '#technology', label: 'Technology' },
+    { href: '#capabilities', label: 'Capabilities' },
+    { href: '#contact', label: 'Contact' },
   ];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`fixed top-0 left-0 w-full z-[100] bg-charcoal/95 backdrop-blur-xl border-b border-line-gray transition-all duration-500`}
+    <nav
+      className={`sticky top-0 z-30 bg-[rgba(10,10,10,0.6)] backdrop-blur-md transition-all duration-300 ${
+        isCompact ? 'py-3' : 'py-5'
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className={`flex items-center justify-between transition-all duration-500 ${
-          scrolled ? 'h-16' : 'h-20'
-        }`}>
-          {/* Logo */}
-          <motion.a
-            href="#hero"
-            className="flex-shrink-0 flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className={`relative transition-all duration-500 ${scrolled ? 'w-10 h-10' : 'w-12 h-12'}`} style={{ maxHeight: '48px' }}>
-              <Image
-                src="/images/vyomgarud_logo.jpg"
-                alt="VyomGarud Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <h1 className={`font-montserrat font-bold text-white tracking-tight transition-all duration-500 ${scrolled ? 'text-xl' : 'text-2xl'}`}>
-              VyomGarud
-            </h1>
-          </motion.a>
+      <div className="container flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" aria-label="VyomGarud home">
+          <Image
+            src="/images/vyomgarud_logo.jpg"
+            alt="VyomGarud"
+            width={48}
+            height={48}
+            className={`transition-all duration-300 ${
+              isCompact ? 'max-h-10' : 'max-h-12'
+            } w-auto`}
+            priority
+          />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+        {/* Navigation Links */}
+        <ul className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.href}>
               <a
-                key={link.name}
                 href={link.href}
-                className="relative text-whitesoft hover:text-white font-inter font-medium text-sm transition-colors duration-300 group"
+                className="font-inter text-sm font-medium text-white/80 hover:text-white uppercase tracking-wide transition-colors duration-200 relative group"
               >
-                {link.name}
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-brand-orange group-hover:w-full transition-all duration-300 ease-premium"></span>
+                {link.label}
+                <span
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all duration-300 group-hover:w-full"
+                  aria-hidden="true"
+                ></span>
               </a>
-            ))}
-            <a
-              href="#contact"
-              className="px-6 py-2 bg-brand-orange text-white font-inter font-semibold text-sm rounded hover:bg-brand-orange/90 hover:shadow-glow-orange transition-all duration-300"
-            >
-              Get Started
-            </a>
-          </div>
+            </li>
+          ))}
+        </ul>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden flex flex-col items-center justify-center w-10 h-10 space-y-1.5 focus:outline-none"
-            aria-label="Toggle menu"
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-6 h-6"
           >
-            <motion.span
-              animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
-            <motion.span
-              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-            <motion.span
-              animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-          </button>
-        </div>
+          </svg>
+        </button>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden bg-steel-900 border-t border-line-gray overflow-hidden"
-          >
-            <div className="px-8 py-8 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-whitesoft hover:text-white font-inter font-medium text-base py-2 transition-colors duration-300"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="block w-full px-6 py-3 bg-brand-orange text-white font-inter font-semibold text-center rounded hover:bg-brand-orange/90 transition-all duration-300"
-              >
-                Get Started
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
