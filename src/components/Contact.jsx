@@ -20,9 +20,9 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: '📧', label: 'Email', value: 'defense@vyomgarud.com' },
-    { icon: '📞', label: 'Phone', value: '+91 8881444693' },
-    { icon: '📍', label: 'Location', value: 'Bangalore, India' },
+    { icon: '📧', label: 'Email', value: 'dikshadamahe25@gmail.com  ' },
+    { icon: '📞', label: 'Phone', value: '+91 9770925370' },
+    { icon: '📍', label: 'Location', value: 'M.P., India' },
   ];
 
   return (

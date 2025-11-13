@@ -110,21 +110,25 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-3 text-whitesoft/40 text-sm">
             <span>Engineered in India</span>
-            <div className="flex items-center justify-center w-8 h-6 rounded overflow-hidden shadow-lg">
+            <div className="flex items-center justify-center w-10 h-7 rounded overflow-hidden shadow-lg border border-whitesoft/20">
               <svg viewBox="0 0 900 600" className="w-full h-full">
                 <rect fill="#FF9933" width="900" height="200"/>
                 <rect fill="#FFFFFF" y="200" width="900" height="200"/>
                 <rect fill="#138808" y="400" width="900" height="200"/>
                 <circle fill="#000080" cx="450" cy="300" r="50"/>
                 <circle fill="none" stroke="#000080" strokeWidth="3" cx="450" cy="300" r="50"/>
-                {[...Array(24)].map((_, i) => {
-                  const angle = (i * 15 - 90) * (Math.PI / 180);
-                  const x1 = 450 + 50 * Math.cos(angle);
-                  const y1 = 300 + 50 * Math.sin(angle);
-                  const x2 = 450 + 40 * Math.cos(angle);
-                  const y2 = 300 + 40 * Math.sin(angle);
-                  return `<line key=${i} x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#000080" strokeWidth="2"/>`;
-                }).join('')}
+                <line x1="450" y1="250" x2="450" y2="260" stroke="#000080" strokeWidth="2"/>
+                <line x1="476" y1="257" x2="468" y2="264" stroke="#000080" strokeWidth="2"/>
+                <line x1="493" y1="276" x2="483" y2="280" stroke="#000080" strokeWidth="2"/>
+                <line x1="500" y1="300" x2="490" y2="300" stroke="#000080" strokeWidth="2"/>
+                <line x1="493" y1="324" x2="483" y2="320" stroke="#000080" strokeWidth="2"/>
+                <line x1="476" y1="343" x2="468" y2="336" stroke="#000080" strokeWidth="2"/>
+                <line x1="450" y1="350" x2="450" y2="340" stroke="#000080" strokeWidth="2"/>
+                <line x1="424" y1="343" x2="432" y2="336" stroke="#000080" strokeWidth="2"/>
+                <line x1="407" y1="324" x2="417" y2="320" stroke="#000080" strokeWidth="2"/>
+                <line x1="400" y1="300" x2="410" y2="300" stroke="#000080" strokeWidth="2"/>
+                <line x1="407" y1="276" x2="417" y2="280" stroke="#000080" strokeWidth="2"/>
+                <line x1="424" y1="257" x2="432" y2="264" stroke="#000080" strokeWidth="2"/>
               </svg>
             </div>
           </div>

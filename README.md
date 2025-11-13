@@ -1,318 +1,202 @@
-# VyomGarud - Military-Grade Counter-UAV Defense Systems
+# VyomGarud - Counter-UAV Defense Systems
 
-![VyomGarud Banner](https://placehold.co/1200x400/0B0B0B/FF7B00?text=VyomGarud+Defense+Systems)
+A modern, responsive landing page for VyomGarud, a military-grade drone defense company. Built as part of the Web Developer Intern Assessment.
 
-## 🎯 Project Overview
+## Overview
 
-**VyomGarud** is a modern, responsive landing page for a military-grade drone defense company specializing in counter-UAV systems. The site embodies precision engineering, advanced autonomy, and high-consequence operations through its dark, cinematic design aesthetic.
+VyomGarud is a single-page application showcasing advanced counter-UAV defense capabilities through a cinematic, professional interface. The site emphasizes precision engineering, military-grade reliability, and autonomous defense systems.
 
-This project was developed as part of the **Web Developer Intern Assessment** for VyomGarud, showcasing modern web development practices and attention to detail.
+## Tech Stack
 
----
+- **Framework:** Next.js 15.1.6 (App Router)
+- **UI Library:** React 19.0.0
+- **Styling:** Tailwind CSS 3.4.0
+- **Animations:** Framer Motion 12.23.24
+- **Typography:** Montserrat, Inter (Google Fonts)
+- **Build Tools:** PostCSS, Autoprefixer
 
-## 🚀 Live Demo
+## Features
 
-[View Live Demo](#) *(Add your deployment link here)*
+### Design & UI
+- Dark, military-aesthetic interface
+- Fully responsive (mobile, tablet, desktop)
+- Custom color palette (charcoal, steel, brand orange)
+- Glass morphism effects and gradient overlays
+- Professional typography hierarchy
 
----
+### Animations
+- Scroll-triggered reveals with Framer Motion
+- Parallax effects on hero section
+- Animated statistics counters
+- Smooth section transitions
+- Interactive hover states throughout
 
-## ✨ Features
-
-### Design & User Experience
-- **Military-Aesthetic Interface** - Dark, confident, and austere design inspired by Anduril, Raphe, and Tesla Cybertruck
-- **Cinematic Hero Section** - Full-screen hero with animated grid background and glowing accents
-- **Smooth Animations** - Professional Framer Motion animations with staggered reveals
-- **Responsive Design** - Fully optimized for mobile, tablet, and desktop viewports
-- **Interactive Elements** - Hover effects, animated statistics, and micro-interactions
+### Sections
+1. **Hero** - Full-screen video background with cinematic presentation
+2. **Performance Metrics** - Animated statistics with gradient styling
+3. **About** - Mission statement and feature showcase
+4. **Capabilities** - Four core defense systems with detailed specifications
+5. **Contact** - Functional contact form with validation
+6. **Footer** - Multi-column layout with social links
 
 ### Technical Highlights
-- **Next.js 15** - Latest React framework with App Router
-- **Tailwind CSS v4** - Utility-first styling with custom design system
-- **Framer Motion** - Sophisticated animation library for smooth transitions
-- **TypeScript-Ready** - Clean JSX with optional TypeScript support
-- **Performance Optimized** - Fast page loads and smooth 60fps animations
+- Optimized video backgrounds
+- Next.js Image optimization
+- Component-based architecture
+- Reusable Tailwind utility classes
+- Smooth 60fps animations
+- Accessible navigation
 
-### Core Sections
-1. **Hero** - Bold headline, animated background, call-to-action buttons
-2. **Performance Metrics** - Animated statistics with hover effects
-3. **About** - Mission statement with feature grid
-4. **Capabilities** - 4 comprehensive counter-UAV solutions with specs
-5. **Contact** - Full-featured form with validation
-6. **Footer** - Professional multi-column footer with social links
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| **Next.js 15** | React framework with App Router |
-| **React 19** | UI library |
-| **Tailwind CSS v4** | Utility-first CSS framework |
-| **Framer Motion** | Animation library |
-| **Google Fonts** | Montserrat & Inter typography |
-
----
-
-## 📦 Installation & Setup
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm/yarn installed
-- Git for version control
+- Node.js 18+ 
+- npm or yarn
 
-### Clone the Repository
+### Installation
+
+1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/vyomgarud.git
-cd vyomgarud
+git clone <repository-url>
+cd VyomGarud
 ```
 
-### Install Dependencies
+2. Install dependencies
 ```bash
 npm install
-# or
-yarn install
 ```
 
-### Run Development Server
+3. Run the development server
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ### Build for Production
+
 ```bash
 npm run build
 npm start
 ```
 
----
-
-## 🎨 Design System
-
-### Color Palette
-```css
-Charcoal:      #0B0B0B  /* Primary background */
-Steel-900:     #111214  /* Secondary background */
-Steel-800:     #1F1F23  /* Elevated surfaces */
-Line-Gray:     #2F2F33  /* Borders & dividers */
-Whitesoft:     #ECEFF1  /* Primary text */
-Brand-Orange:  #FF7B00  /* Accent color */
-```
-
-### Typography
-- **Headlines:** Montserrat (Bold, 700-800 weight)
-- **Body Text:** Inter (Regular, 400-600 weight)
-- **Tracking:** Tight for headlines, wide for kickers
-
-### Spacing Philosophy
-- Large section padding (`py-24` to `py-32`)
-- Generous component spacing (`gap-16`, `gap-32`)
-- Consistent container widths (`max-w-7xl`)
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 VyomGarud/
 ├── app/
-│   ├── globals.css          # Global styles & design system
+│   ├── globals.css          # Global styles and Tailwind directives
 │   ├── layout.jsx           # Root layout with metadata
 │   └── page.jsx             # Main landing page
 ├── src/
 │   └── components/
-│       ├── NavBar.jsx       # Sticky navigation with mobile menu
-│       ├── Hero.jsx         # Full-screen hero section
-│       ├── Highlights.jsx   # Animated statistics
-│       ├── About.jsx        # Mission & features
-│       ├── Capabilities.jsx # Product offerings (4 sections)
-│       ├── Contact.jsx      # Contact form with validation
-│       └── Footer.jsx       # Multi-column footer
+│       ├── NavBar.jsx       # Navigation with scroll effects
+│       ├── Hero.jsx         # Full-screen hero with video
+│       ├── Highlights.jsx   # Animated metrics section
+│       ├── About.jsx        # Mission and features
+│       ├── Capabilities.jsx # Product showcase
+│       ├── Contact.jsx      # Contact form
+│       ├── Footer.jsx       # Site footer
+│       ├── MagneticButton.jsx
+│       └── ScrollProgress.jsx
 ├── public/
-│   └── images/              # Static assets (if needed)
+│   ├── images/              # Static images
+│   └── videos/              # Background videos
 ├── tailwind.config.js       # Tailwind configuration
-├── package.json             # Dependencies
-└── README.md                # This file
+├── postcss.config.js        # PostCSS configuration
+└── package.json
 ```
 
----
+## Design System
 
-## 🎯 Assessment Requirements Checklist
+### Colors
+- **Charcoal:** #0B0B0B (primary background)
+- **Steel-900:** #111214 (secondary background)
+- **Whitesoft:** #ECEFF1 (primary text)
+- **Brand Orange:** #FF7B00 (accents)
 
-### Required Sections ✅
-- [x] **Hero** - Company name, tagline, CTA, bold visual
-- [x] **About** - Mission statement summary
-- [x] **Capabilities** - 4 product cards with detailed specs
-- [x] **Highlights** - 3 animated feature statistics
-- [x] **Contact/Footer** - Form with validation and links
+### Typography
+- **Headlines:** Montserrat (Bold/ExtraBold)
+- **Body Text:** Inter (Regular/Medium)
 
-### Design Requirements ✅
-- [x] **Stack:** Next.js + React
-- [x] **Styling:** Tailwind CSS with custom design system
-- [x] **Aesthetic:** Dark, military/futuristic
-- [x] **Colors:** Charcoal (#0B0B0B), White, Orange (#FF7B00)
-- [x] **Fonts:** Montserrat + Inter
-- [x] **Animations:** Framer Motion throughout
+### Breakpoints
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
 
-### Deliverables ✅
-- [x] GitHub repository with clean commit history
-- [x] Comprehensive README with setup instructions
-- [x] Responsive design (mobile, tablet, desktop)
-- [x] Code quality and organization
-- [x] Brand-appropriate creativity
+## Key Components
 
----
+### Hero Section
+- Full-viewport video background
+- Animated grid overlay
+- Magnetic CTA buttons
+- Parallax scroll effects
+- Company logo watermark
 
-## 🎬 Animation Details
+### Capabilities Section
+- Four detailed product cards
+- Real images and video backgrounds
+- Gradient overlays with scan effects
+- Alternating zigzag layout
+- Detailed specification lists
 
-### Hero Animations
-- Staggered text reveals with fade-up
-- Infinite animated grid background
-- Pulsing orange glow effect
-- Smooth scroll indicator
+### Contact Form
+- Field validation
+- Animated focus states
+- Form state management
+- Professional styling
 
-### Section Animations
-- Scroll-triggered fade-ins with `whileInView`
-- Counter animations for statistics
-- Hover effects on cards and buttons
-- Smooth page transitions
+## Performance Optimizations
 
-### Performance
-- `viewport={{ once: true }}` prevents re-animations
-- CSS transforms for GPU acceleration
-- Optimized animation durations (0.4s - 0.8s)
+- Video lazy loading
+- Next.js automatic code splitting
+- Optimized images with Next/Image
+- GPU-accelerated animations
+- Efficient re-renders with React 19
+- Tailwind CSS purging in production
 
----
+## Browser Support
 
-## 📱 Responsive Breakpoints
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-| Breakpoint | Width | Changes |
-|------------|-------|---------|
-| **Mobile** | < 768px | Single column, stacked layout, mobile menu |
-| **Tablet** | 768px - 1024px | 2-column grids, adjusted typography |
-| **Desktop** | > 1024px | Full layout, max-width containers |
+## Development Notes
 
----
+### Animation Strategy
+All animations use Framer Motion with `viewport={{ once: true }}` to prevent unnecessary re-renders. Scroll-triggered animations use `whileInView` with appropriate margins for optimal timing.
 
-## 🔧 Customization Guide
+### Styling Approach
+Custom Tailwind utilities are defined in `globals.css` for consistent spacing, typography, and UI elements. This ensures maintainability and reduces code duplication.
 
-### Change Brand Colors
-Edit `tailwind.config.js`:
-```javascript
-colors: {
-  'brand-orange': '#YOUR_COLOR',
-  // ... other colors
-}
-```
+### Component Philosophy
+Components are kept small and focused. Shared logic is extracted into custom hooks or utility functions. Each component handles its own animations and state.
 
-### Modify Typography
-Update `app/globals.css`:
-```css
-@import url('https://fonts.googleapis.com/css2?family=YourFont');
+## Assessment Requirements
 
-.headline-hero {
-  @apply font-your-font ...;
-}
-```
+This project fulfills all requirements from the Web Developer Intern Assessment:
 
-### Add New Sections
-Create component in `src/components/`:
-```javascript
-// src/components/YourSection.jsx
-'use client';
-import { motion } from 'framer-motion';
+- Modern, responsive landing page
+- React/Next.js framework
+- Tailwind CSS styling
+- Dark, professional aesthetic
+- Required sections (Hero, About, Capabilities, Highlights, Contact, Footer)
+- Subtle animations throughout
+- Clean, organized code
+- Comprehensive documentation
 
-export default function YourSection() {
-  return (
-    <section className="section-padding">
-      {/* Your content */}
-    </section>
-  );
-}
-```
+## Credits
 
-Import in `app/page.jsx`:
-```javascript
-import YourSection from '../src/components/YourSection';
-```
+- Design inspiration: Anduril, Raphe, Tesla
+- Fonts: Google Fonts (Montserrat, Inter)
+- Icons: Custom SVG implementation
+- Videos and images: Public folder assets
+
+## License
+
+This project was created for educational and assessment purposes.
 
 ---
 
-## 🐛 Known Issues & Solutions
-
-### Issue: Fonts not loading
-**Solution:** Clear `.next` folder and restart dev server:
-```bash
-rm -rf .next  # or Remove-Item -Recurse -Force .next (Windows)
-npm run dev
-```
-
-### Issue: Tailwind classes not working
-**Solution:** Ensure all paths are in `tailwind.config.js` content array
-
-### Issue: Animations not triggering
-**Solution:** Check Framer Motion is installed: `npm install framer-motion`
-
----
-
-## 📈 Performance Metrics
-
-- **Lighthouse Score:** 95+ (Performance)
-- **First Contentful Paint:** < 1.5s
-- **Time to Interactive:** < 3s
-- **Bundle Size:** ~150KB (gzipped)
-
----
-
-## 🤝 Contributing
-
-This is an assessment project, but suggestions are welcome:
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -m 'Add improvement'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Open Pull Request
-
----
-
-## 📄 License
-
-This project is created for assessment purposes. All rights reserved by VyomGarud Defense Systems.
-
----
-
-## 👤 Developer
-
-**Your Name**  
-Web Developer Intern Candidate  
-📧 your.email@example.com  
-🔗 [LinkedIn](#) | [GitHub](#) | [Portfolio](#)
-
----
-
-## 🙏 Acknowledgments
-
-- **Design Inspiration:** Anduril, Raphe, Tesla Cybertruck, Onomondo
-- **Fonts:** Google Fonts (Montserrat, Inter)
-- **Icons:** Unicode Emojis & Custom SVGs
-- **Animations:** Framer Motion
-- **Framework:** Next.js Team
-
----
-
-## 📞 Contact for Questions
-
-For any clarifications regarding this assessment:  
-📱 +91 8881444693  
-📧 defense@vyomgarud.com
-
----
-
-<div align="center">
-  <p><strong>Built with precision. Engineered for defense.</strong></p>
-  <p>🇮🇳 Proudly Made in India</p>
-</div>
+**Built with attention to detail and modern web technologies.**
