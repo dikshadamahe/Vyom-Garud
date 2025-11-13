@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 export default function NavBar() {
@@ -10,127 +9,103 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 40);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Capabilities', href: '#capabilities' },
-    { name: 'Contact', href: '#contact' },
+    { label: 'Home', href: '#hero' },
+    { label: 'About', href: '#about' },
+    { label: 'Capabilities', href: '#capabilities' },
+    { label: 'Highlights', href: '#highlights' },
+    { label: 'Contact', href: '#contact' },
   ];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`fixed top-0 left-0 w-full z-[100] bg-charcoal/95 backdrop-blur-xl border-b border-line-gray transition-all duration-500`}
-    >
-      <div className="max-w-7xl mx-auto px-8 lg:px-12">
-        <div className={`flex items-center justify-between transition-all duration-500 ${
-          scrolled ? 'h-16' : 'h-20'
-        }`}>
-          {/* Logo */}
-          <motion.a
-            href="#hero"
-            className="flex-shrink-0 flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className={`relative transition-all duration-500 ${scrolled ? 'w-10 h-10' : 'w-12 h-12'}`} style={{ maxHeight: '48px' }}>
+    <header className={`fixed top-0 left-0 right-0 z-30 border-b border-line-gray transition-all duration-300 ${scrolled ? 'bg-charcoal/95 py-3 shadow-sm backdrop-blur' : 'bg-charcoal/90 py-4 backdrop-blur-sm'}`}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <a href="#hero" className="flex items-center gap-3" aria-label="VyomGarud home">
+            <div className="relative h-12 w-12">
               <Image
                 src="/images/vyomgarud_logo.jpg"
-                alt="VyomGarud Logo"
+                alt="VyomGarud logo"
                 fill
                 className="object-contain"
                 priority
               />
             </div>
-            <h1 className={`font-montserrat font-bold text-white tracking-tight transition-all duration-500 ${scrolled ? 'text-xl' : 'text-2xl'}`}>
-              VyomGarud
-            </h1>
-          </motion.a>
+            <span className="text-xl font-semibold tracking-tight text-white">VyomGarud</span>
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center gap-8 text-sm text-gray500 md:flex">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
-                className="relative text-whitesoft hover:text-white font-inter font-medium text-sm transition-colors duration-300 group"
+                className="hover:text-white transition-colors"
               >
-                {link.name}
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-brand-orange group-hover:w-full transition-all duration-300 ease-premium"></span>
+                {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="px-6 py-2 bg-brand-orange text-white font-inter font-semibold text-sm rounded hover:bg-brand-orange/90 hover:shadow-glow-orange transition-all duration-300"
+              className="rounded-md bg-brand-orange px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-orange/90"
             >
-              Get Started
+              Request Demo
             </a>
-          </div>
+          </nav>
 
-          {/* Mobile Hamburger */}
           <button
-            onClick={toggleMenu}
-            className="md:hidden flex flex-col items-center justify-center w-10 h-10 space-y-1.5 focus:outline-none"
-            aria-label="Toggle menu"
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded md:hidden"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-label="Toggle navigation"
           >
-            <motion.span
-              animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-            <motion.span
-              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-white"
-            />
-            <motion.span
-              animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white"
-            />
+            <span className="relative block h-5 w-6">
+              <span
+                className="absolute left-0 h-0.5 w-full bg-white transition-transform"
+                style={{ transform: isOpen ? 'translateY(10px) rotate(45deg)' : 'translateY(0px)' }}
+              />
+              <span
+                className="absolute left-0 top-1/2 h-0.5 w-full bg-white transition-opacity"
+                style={{ opacity: isOpen ? 0 : 1 }}
+              />
+              <span
+                className="absolute left-0 h-0.5 w-full bg-white transition-transform"
+                style={{ transform: isOpen ? 'translateY(-10px) rotate(-45deg)' : 'translateY(20px)' }}
+              />
+            </span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden bg-steel-900 border-t border-line-gray overflow-hidden"
-          >
-            <div className="px-8 py-8 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-whitesoft hover:text-white font-inter font-medium text-base py-2 transition-colors duration-300"
-                >
-                  {link.name}
-                </a>
-              ))}
+      {isOpen && (
+        <div className="mt-4 border-t border-line-gray bg-charcoal/95 md:hidden">
+          <div className="space-y-4 px-6 py-6 text-sm text-gray300">
+            {navLinks.map((link) => (
               <a
-                href="#contact"
+                key={link.href}
+                href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block w-full px-6 py-3 bg-brand-orange text-white font-inter font-semibold text-center rounded hover:bg-brand-orange/90 transition-all duration-300"
+                className="block"
               >
-                Get Started
+                {link.label}
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="block rounded-md bg-brand-orange px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-orange/90"
+            >
+              Request Demo
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
