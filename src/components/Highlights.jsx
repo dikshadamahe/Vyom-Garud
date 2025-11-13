@@ -36,6 +36,34 @@ function AnimatedNumber({ value, duration = 2 }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+function AnimatedFraction({ numeratorTarget, denominatorTarget, duration = 2 }) {
+  const [num, setNum] = useState(0);
+  const [den, setDen] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let startTime;
+    let raf;
+    const animate = (ts) => {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / (duration * 1000), 1);
+      setNum(Math.floor(p * numeratorTarget));
+      setDen(Math.floor(p * denominatorTarget));
+      if (p < 1) raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [isInView, numeratorTarget, denominatorTarget, duration]);
+
+  return (
+    <span ref={ref}>
+      {num}/{den}
+    </span>
+  );
+}
+
 export default function Highlights() {
   // PDF Req: 3 concise feature bullets
   const stats = [
@@ -56,7 +84,7 @@ export default function Highlights() {
       label: 'Autonomous Defense', 
       icon: '🛡️',
       gradient: 'from-purple-500 to-pink-500',
-      raw: true, // Display as-is (not a numeric animation)
+      fraction: { numerator: 24, denominator: 7 }, // Animate "24/7"
     },
   ];
 
@@ -130,7 +158,9 @@ export default function Highlights() {
                 
                 {/* Animated Value with Gradient */}
                 <h3 className={`relative font-montserrat font-bold text-6xl bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-4`}>
-                  {stat.raw ? <span>{stat.value}</span> : <AnimatedNumber value={stat.value} />}
+                  {stat.fraction
+                    ? <AnimatedFraction numeratorTarget={stat.fraction.numerator} denominatorTarget={stat.fraction.denominator} />
+                    : <AnimatedNumber value={stat.value} />}
                 </h3>
                 
                 {/* Label */}
