@@ -22,6 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="canonical" href="https://vyomgarud.com" />
         <link rel="preload" href="/images/drone1.jpg" as="image" />
         <link rel="preload" href="/images/vyomgarud_logo.jpg" as="image" />
       </head>

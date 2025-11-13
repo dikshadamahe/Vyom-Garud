@@ -84,7 +84,7 @@ export default function Hero() {
 
             {/* Headline */}
             <motion.h1 
-              className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6"
+              className="text-5xl md:text-7xl lg:text-8xl font-heading tracking-tight leading-tight text-white uppercase mb-6"
               variants={heroTitle}
             >
               Defend Your<br />
@@ -92,7 +92,7 @@ export default function Hero() {
             </motion.h1>
 
             {/* Subheading */}
-            <p className="font-inter text-lg sm:text-xl text-whitesoft/90 mb-10 leading-relaxed max-w-2xl">
+            <p className="text-base md:text-lg leading-relaxed text-whitesoft/90 mb-10 max-w-2xl">
               Military-grade UAV detection and neutralization systems. 
               Trusted by defense forces and critical infrastructure worldwide.
             </p>

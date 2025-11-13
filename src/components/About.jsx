@@ -17,22 +17,22 @@ export default function About() {
               <span className="font-inter text-sm text-brand-orange font-medium uppercase tracking-wide">About Us</span>
             </div>
 
-            <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white leading-tight tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading tracking-wide text-white mb-6">
               VyomGarud Defense Systems
             </h2>
 
             <div className="space-y-6">
-              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
+              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
                 VyomGarud delivers military-grade counter-UAV systems designed for defense agencies, 
                 critical infrastructure, and high-security facilities worldwide. Our solutions combine 
                 RF detection, active jamming, and autonomous threat response.
               </p>
-              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
+              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
                 With deployments across government installations and enterprise sites, we provide 
                 proven protection against unauthorized drone incursions. Our systems integrate 
                 seamlessly with existing security architectures while maintaining zero false positives.
               </p>
-              <p className="font-inter text-base md:text-lg text-whitesoft/90 leading-relaxed">
+              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
                 Trusted by defense forces in 12+ countries. Certified to NATO AQAP standards.
               </p>
             </div>
