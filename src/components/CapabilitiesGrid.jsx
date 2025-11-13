@@ -57,7 +57,7 @@ export default function CapabilitiesGrid() {
       </div>
 
       {/* Tactical Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(47,47,47,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(47,47,47,0.08)_1px,transparent_1px)] bg-[size:64px_64px] z-[1]"></div>
+      <div className="absolute inset-0 tactical-grid z-[1]"></div>
 
       {/* Animated Scanning Line */}
       <motion.div

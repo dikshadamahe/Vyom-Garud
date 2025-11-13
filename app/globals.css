@@ -135,9 +135,19 @@ a {
 /* Tactical Grid Overlay */
 .tactical-grid {
   background-image: 
-    linear-gradient(rgba(47, 47, 47, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(47, 47, 47, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
+    repeating-linear-gradient(0deg, rgba(47, 47, 47, 0.04) 0px, transparent 1px, transparent 4px, rgba(47, 47, 47, 0.04) 5px),
+    repeating-linear-gradient(90deg, rgba(47, 47, 47, 0.04) 0px, transparent 1px, transparent 4px, rgba(47, 47, 47, 0.04) 5px);
+  background-size: 80px 80px;
+  animation: tactical-grid-move 60s linear infinite;
+}
+
+@keyframes tactical-grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
 }
 
 /* Glowing Pulse Animation */

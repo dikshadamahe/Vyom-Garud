@@ -71,7 +71,7 @@ export default function Hero() {
       </div>
 
       {/* Tactical Grid Overlay */}
-      <div className="absolute inset-0 z-[1] bg-[linear-gradient(rgba(47,47,47,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(47,47,47,0.05)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+      <div className="absolute inset-0 z-[1] tactical-grid"></div>
       
       {/* Animated HUD Rings */}
       <motion.div
