@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import Image from 'next/image';
+import { m as motion } from 'framer-motion';
 import CapabilityCard from './CapabilityCard';
 
 export default function CapabilitiesGrid() {
