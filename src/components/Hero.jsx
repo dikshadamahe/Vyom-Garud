@@ -4,8 +4,18 @@ import { m as motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Hero() {
+  const prefersReducedMotion = typeof window !== 'undefined' 
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    : false;
+
+  const heroTitle = {
+    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }
+  };
+
   const fadeUpVariant = {
-    initial: { opacity: 0, y: 20 },
+    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
   };
@@ -73,10 +83,13 @@ export default function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6">
+            <motion.h1 
+              className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6"
+              variants={heroTitle}
+            >
               Defend Your<br />
               <span className="text-brand-orange">Airspace</span>
-            </h1>
+            </motion.h1>
 
             {/* Subheading */}
             <p className="font-inter text-lg sm:text-xl text-whitesoft/90 mb-10 leading-relaxed max-w-2xl">

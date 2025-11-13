@@ -6,19 +6,23 @@ import { m as motion } from 'framer-motion';
 import CapabilityCard from './CapabilityCard';
 
 export default function CapabilitiesGrid() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const prefersReducedMotion = typeof window !== 'undefined' 
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    : false;
+
+  const gridStagger = {
+    hidden: { opacity: prefersReducedMotion ? 1 : 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         delayChildren: 0.2,
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -187,7 +191,7 @@ export default function CapabilitiesGrid() {
 
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
+          variants={gridStagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
