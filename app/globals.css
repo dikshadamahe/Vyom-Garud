@@ -199,3 +199,17 @@ video {
   object-fit: cover;
   pointer-events: none;
 }
+
+/* Ultra Slow Zoom Animation */
+@keyframes ultra-slow-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-ultra-slow-zoom {
+  animation: ultra-slow-zoom 30s ease-in-out infinite alternate;
+}

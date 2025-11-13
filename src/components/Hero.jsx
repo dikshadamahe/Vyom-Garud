@@ -47,16 +47,27 @@ export default function Hero() {
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        >
-          <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-charcoal/70 to-steel-900/80"></div>
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-40 animate-ultra-slow-zoom"
+            poster="/images/drone1.jpg"
+          >
+            <source src="/videos/video1_hero_drone.mp4.mp4" type="video/mp4" />
+            {/* Fallback image */}
+            <Image
+              src="/images/drone1.jpg"
+              alt="Hero background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </video>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-steel-900/90"></div>
       </div>
 
       {/* Tactical Grid Overlay */}
