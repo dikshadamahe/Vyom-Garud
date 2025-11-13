@@ -292,10 +292,6 @@ Components are modular and reusable. The design system is centralized in `global
 - Icons: Custom SVG implementation
 - Videos and images: Public folder assets
 
-## License
-
-This project was created for educational and assessment purposes.
-
 ---
 
 **Built with love and attention to detail By Diksha Damahe❤️.**
