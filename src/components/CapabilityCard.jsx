@@ -1,36 +1,49 @@
+'use client';
+
+import { m as motion } from 'framer-motion';
 import Image from 'next/image';
 
-export default function CapabilityCard({ title, icon, description, image }) {
+export default function CapabilityCard({ title, icon, description, image, index }) {
   return (
-    <div className="group bg-steel-900 border border-line-gray rounded-xl p-6 min-h-[220px] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-brand-orange/20 hover:border-brand-orange/50">
-      {/* Image Background */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: '-80px' }}
+      className="premium-card group cursor-pointer h-full flex flex-col"
+    >
+      {/* Icon */}
+      <div className="icon-wrapper bg-brand-orange/10 rounded-xl mb-6 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300">
+        {icon}
+      </div>
+
+      {/* Title */}
+      <h3 className="font-montserrat font-700 text-xl text-whitesoft mb-4">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p className="font-inter text-sm leading-relaxed text-whitesoft/70 mb-6 flex-grow">
+        {description}
+      </p>
+
+      {/* Image with Fixed Aspect Ratio */}
       {image && (
-        <div className="relative w-full h-32 mb-4 rounded-lg overflow-hidden" aria-hidden="true" tabIndex={-1}>
+        <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-auto">
           <Image
             src={image}
             alt=""
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
+            className="object-cover"
+            aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-steel-900 via-steel-900/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/40 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-4 glass-hud">
+            <p className="text-xs text-whitesoft/80 font-inter uppercase tracking-wider">{title}</p>
+          </div>
         </div>
       )}
-
-      {/* Icon & Title */}
-      <div className="flex items-center gap-4 mb-3">
-        <div className="icon w-12 h-12 flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
-          {icon}
-        </div>
-        <h3 className="font-montserrat font-semibold text-xl text-white">
-          {title}
-        </h3>
-      </div>
-
-      {/* Description */}
-      <p className="font-inter text-sm text-whitesoft/80 leading-relaxed">
-        {description}
-      </p>
-    </div>
+    </motion.div>
   );
 }

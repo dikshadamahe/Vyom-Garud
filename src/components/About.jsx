@@ -1,72 +1,86 @@
+'use client';
+
+import { m as motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function About() {
+  const prefersReducedMotion = typeof window !== 'undefined' 
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    : false;
+
+  const fadeInLeft = {
+    initial: prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 },
+    whileInView: { opacity: 1, x: 0 },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    viewport: { once: true, margin: '-100px' }
+  };
+
+  const fadeInRight = {
+    initial: prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 },
+    whileInView: { opacity: 1, x: 0 },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    viewport: { once: true, margin: '-100px' }
+  };
+
   return (
-    <section id="about" className="section bg-steel-900 relative">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="section section-spacing bg-steel-900 relative overflow-hidden">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Content */}
-          <div className="relative">
-            {/* Vertical Orange Accent Bar */}
-            <div 
-              className="absolute -left-6 top-0 w-2 h-12 bg-brand-orange rounded-full" 
-              aria-hidden="true"
-            ></div>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6">
-              <span className="font-inter text-sm text-brand-orange font-medium uppercase tracking-wide">About Us</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-heading tracking-wide text-white mb-6">
-              VyomGarud Defense Systems
+          <motion.div {...fadeInLeft}>
+            <div className="accent-line"></div>
+            
+            <h2 className="headline-section text-whitesoft mb-8">
+              VyomGarud <span className="text-brand-orange">Defense Systems</span>
             </h2>
 
             <div className="space-y-6">
-              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
-                VyomGarud delivers military-grade counter-UAV systems designed for defense agencies, 
+              <p className="body-large text-whitesoft/80">
+                VyomGarud delivers military-grade counter-UAV systems engineered for defense agencies, 
                 critical infrastructure, and high-security facilities worldwide. Our solutions combine 
-                RF detection, active jamming, and autonomous threat response.
+                advanced RF detection, active jamming, and autonomous threat response.
               </p>
-              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
-                With deployments across government installations and enterprise sites, we provide 
-                proven protection against unauthorized drone incursions. Our systems integrate 
+              <p className="body-large text-whitesoft/80">
+                With deployments across government installations and enterprise sites in 12+ countries, 
+                we provide proven protection against unauthorized drone incursions. Our systems integrate 
                 seamlessly with existing security architectures while maintaining zero false positives.
               </p>
-              <p className="text-base md:text-lg leading-relaxed text-whitesoft/90">
-                Trusted by defense forces in 12+ countries. Certified to NATO AQAP standards.
+              <p className="body-large text-whitesoft/80 font-semibold">
+                Certified to NATO AQAP standards. Trusted by defense forces globally.
               </p>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-line-gray">
+            <div className="grid grid-cols-3 gap-8 mt-12 pt-10 border-t border-whitesoft/10">
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">5km+</div>
-                <div className="font-inter text-sm text-whitesoft/80">Detection Range</div>
+                <div className="font-montserrat font-700 text-3xl text-brand-orange mb-2">5km+</div>
+                <div className="font-inter text-xs text-whitesoft/60 uppercase tracking-wider">Range</div>
               </div>
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">99.8%</div>
-                <div className="font-inter text-sm text-whitesoft/80">Accuracy Rate</div>
+                <div className="font-montserrat font-700 text-3xl text-brand-orange mb-2">99.8%</div>
+                <div className="font-inter text-xs text-whitesoft/60 uppercase tracking-wider">Accuracy</div>
               </div>
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">12+</div>
-                <div className="font-inter text-sm text-whitesoft/80">Countries</div>
+                <div className="font-montserrat font-700 text-3xl text-brand-orange mb-2">12+</div>
+                <div className="font-inter text-xs text-whitesoft/60 uppercase tracking-wider">Countries</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Image */}
-          <div className="relative">
-            <div className="relative w-full aspect-square max-w-lg mx-auto rounded-xl overflow-hidden shadow-2xl shadow-black/40">
+          <motion.div {...fadeInRight} className="relative">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/drone2.jpg"
                 alt="VyomGarud Defense Technology"
                 fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 via-transparent to-steel-900/30" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/15 via-transparent to-charcoal/40 mix-blend-overlay"></div>
+              <div className="absolute inset-0 border border-brand-orange/20 rounded-2xl"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

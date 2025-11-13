@@ -20,6 +20,7 @@ module.exports = {
         steel: {
           900: '#111214',
           800: '#1f1f23',
+          700: '#2A2D31',
         },
         'line-gray': '#2f2f33',
         whitesoft: '#ECEFF1',
@@ -36,6 +37,8 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        'font-heading': ['Montserrat', 'system-ui', 'sans-serif'],
+        'font-body': ['Inter', 'system-ui', 'sans-serif'],
       },
       spacing: {
         '4': '4px',

@@ -1,30 +1,43 @@
 'use client';
 
-import { m as motion } from 'framer-motion';
+import { m as motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 export default function Hero() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start']
+  });
+
   const prefersReducedMotion = typeof window !== 'undefined' 
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
     : false;
 
-  const heroTitle = {
-    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
+  const y = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
+
+  const fadeUp = {
+    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   };
 
-  const fadeUpVariant = {
-    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
+  const fadeUpDelay = {
+    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }
   };
 
   return (
-    <section id="main-content" className="hero-section relative flex min-h-screen items-center pt-32 pb-24">
+    <section id="hero" className="hero-cinematic section" ref={sectionRef}>
+      {/* Tactical Grid Overlay */}
+      <div className="tactical-grid" aria-hidden="true"></div>
+
       {/* Background Video - Desktop */}
       <video 
-        className="bg-video absolute inset-0 object-cover w-full h-full z-0 hidden md:block"
+        className="hero-bg-media hidden md:block"
         autoPlay 
         muted 
         loop 
@@ -37,8 +50,8 @@ export default function Hero() {
         <source src="/videos/video1_hero_drone.mp4" type="video/mp4" />
       </video>
 
-      {/* Background Image - Mobile (SSR-safe) */}
-      <div className="md:hidden absolute inset-0 w-full h-full z-0">
+      {/* Background Image - Mobile */}
+      <div className="md:hidden absolute inset-0 z-[1]">
         <Image
           src="/images/drone1.jpg"
           alt=""
@@ -50,87 +63,113 @@ export default function Hero() {
         />
       </div>
 
-      {/* Dark Gradient Overlay */}
-      <div className="overlay-dark absolute inset-0 bg-black/64 z-10" aria-hidden="true"></div>
+      {/* Gradient Overlay */}
+      <div className="hero-overlay"></div>
 
-      {/* Watermark Logo (top-right) */}
-      <div className="absolute right-8 top-24 opacity-[0.06] pointer-events-none hidden lg:block z-10" aria-hidden="true">
+      {/* HUD Ring Decoration - with parallax */}
+      <motion.div 
+        className="hud-ring hidden lg:block" 
+        style={{ 
+          top: '15%', 
+          right: '10%', 
+          zIndex: 4,
+          y: useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -50])
+        }} 
+        aria-hidden="true"
+      ></motion.div>
+
+      {/* Watermark Logo */}
+      <div className="watermark-logo hidden xl:block" aria-hidden="true">
         <Image 
           src="/images/vyomgarud_logo.jpg" 
           alt="" 
-          width={180} 
-          height={180}
-          sizes="180px"
+          width={220} 
+          height={220}
+          sizes="220px"
           className="select-none"
         />
       </div>
 
-      {/* Main Content */}
-      <div className="content-front relative z-20 w-full">
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="max-w-4xl"
-            initial="initial"
-            animate="animate"
-            variants={fadeUpVariant}
-          >
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6">
-              <div className="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></div>
-              <span className="font-inter text-sm text-brand-orange font-medium uppercase tracking-wide">
-                Military-Grade Defense
-              </span>
-            </div>
+      {/* Gradient Bottom Fade */}
+      <div className="gradient-fade-bottom"></div>
 
-            {/* Headline */}
-            <motion.h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-heading tracking-tight leading-tight text-white uppercase mb-6"
-              variants={heroTitle}
+      {/* Hero Content - with parallax */}
+      <motion.div className="hero-content" style={{ y, opacity }}>
+        <div className="container-custom">
+          <div className="max-w-4xl">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={fadeUp}
             >
-              Defend Your<br />
-              <span className="text-brand-orange">Airspace</span>
-            </motion.h1>
+              {/* Accent Line */}
+              <div className="accent-line"></div>
 
-            {/* Subheading */}
-            <p className="text-base md:text-lg leading-relaxed text-whitesoft/90 mb-10 max-w-2xl">
-              Military-grade UAV detection and neutralization systems. 
-              Trusted by defense forces and critical infrastructure worldwide.
-            </p>
+              {/* Headline */}
+              <h1 className="text-5xl md:text-7xl font-montserrat font-700 text-whitesoft mb-6 leading-tight">
+                Defend Your<br />
+                <span className="text-brand-orange">Airspace</span>
+              </h1>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              {/* Subheadline */}
+              <p className="text-lg md:text-xl font-inter text-whitesoft/85 mb-10 max-w-2xl">
+                Military-grade counter-UAV defense systems for critical infrastructure. 
+                Trusted by defense forces and enterprise facilities worldwide.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-5"
+              initial="initial"
+              animate="animate"
+              variants={fadeUpDelay}
+            >
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded transition-all duration-300 hover:bg-brand-orange/90 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 focus:ring-offset-charcoal"
+                className="inline-flex items-center justify-center px-10 py-5 bg-brand-orange text-white font-inter font-semibold text-base rounded-xl hover:bg-brand-orange/90 hover:shadow-2xl hover:shadow-brand-orange/30 transition-all duration-300 hover:scale-105"
               >
                 Request Demo
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </a>
               <a
                 href="#capabilities"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-whitesoft/40 text-white font-inter font-semibold text-base rounded transition-all duration-300 hover:bg-whitesoft/5 hover:border-whitesoft/60 focus:outline-none focus:ring-2 focus:ring-whitesoft focus:ring-offset-2 focus:ring-offset-charcoal"
+                className="inline-flex items-center justify-center px-10 py-5 bg-transparent border-2 border-whitesoft/20 text-whitesoft font-inter font-semibold text-base rounded-xl hover:border-whitesoft/40 hover:bg-whitesoft/5 transition-all duration-300"
               >
-                View Capabilities
+                Explore Technology
               </a>
-            </div>
+            </motion.div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-line-gray">
+            {/* KPIs */}
+            <motion.div 
+              className="grid grid-cols-3 gap-10 mt-20 pt-10 border-t border-whitesoft/10"
+              initial="initial"
+              animate="animate"
+              variants={{
+                initial: { opacity: 0 },
+                animate: { 
+                  opacity: 1,
+                  transition: { duration: 0.8, delay: 0.4 }
+                }
+              }}
+            >
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">5km</div>
-                <div className="font-inter text-sm text-whitesoft/70">Detection Range</div>
+                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">5km+</div>
+                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Detection Range</div>
               </div>
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">99.8%</div>
-                <div className="font-inter text-sm text-whitesoft/70">Accuracy</div>
+                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">99.8%</div>
+                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Accuracy</div>
               </div>
               <div>
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">24/7</div>
-                <div className="font-inter text-sm text-whitesoft/70">Active Defense</div>
+                <div className="font-montserrat font-700 text-4xl text-brand-orange mb-2">24/7</div>
+                <div className="font-inter text-sm text-whitesoft/60 uppercase tracking-wide">Active Defense</div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
