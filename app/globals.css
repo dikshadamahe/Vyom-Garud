@@ -12,13 +12,6 @@
   body {
     @apply bg-charcoal text-whitesoft font-inter antialiased;
   }
-  
-  /* Hide default cursor on desktop for custom cursor */
-  @media (min-width: 1024px) {
-    * {
-      cursor: none !important;
-    }
-  }
 }
 
 @layer components {

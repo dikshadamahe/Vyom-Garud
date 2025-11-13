@@ -37,6 +37,25 @@ export default function Hero() {
           <source src="/videos/video1_hero_drone.mp4" type="video/mp4" />
         </video>
         
+        {/* Company Logo Watermark - Bottom Right */}
+        <motion.div 
+          className="absolute bottom-6 right-6 z-[12] opacity-40 hover:opacity-80 transition-opacity duration-300"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+        >
+          <div className="flex items-center gap-2 bg-charcoal/60 backdrop-blur-md px-4 py-2 rounded-lg border border-whitesoft/10">
+            <img 
+              src="/images/vyomgarud_logo.jpg" 
+              alt="VyomGarud" 
+              className="w-8 h-8 rounded object-cover"
+            />
+            <span className="font-montserrat font-bold text-whitesoft text-sm tracking-wider">
+              VYOMGARUD
+            </span>
+          </div>
+        </motion.div>
+        
         {/* Dark Overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/90 via-charcoal/70 to-charcoal z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-transparent to-charcoal/80 z-10" />

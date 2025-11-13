@@ -70,14 +70,15 @@ function FeatureSection({ title, description, specs, index, image, video, gradie
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Video or Image Background */}
+        {/* Video or Image Background - Full Coverage */}
         {video ? (
           <motion.video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute top-0 left-0 w-full h-full"
+            style={{ objectFit: 'cover' }}
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.5 }}
           >
@@ -85,7 +86,7 @@ function FeatureSection({ title, description, specs, index, image, video, gradie
           </motion.video>
         ) : (
           <motion.div
-            className="absolute inset-0"
+            className="absolute inset-0 w-full h-full"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.5 }}
           >
@@ -94,7 +95,9 @@ function FeatureSection({ title, description, specs, index, image, video, gradie
               alt={title}
               fill
               className="object-cover"
+              style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 50vw"
+              priority
             />
           </motion.div>
         )}

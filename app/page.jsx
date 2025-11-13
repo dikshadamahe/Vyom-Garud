@@ -1,6 +1,5 @@
 // app/page.jsx
 import ScrollProgress from '../src/components/ScrollProgress';
-import CursorFollower from '../src/components/CursorFollower';
 import NavBar from '../src/components/NavBar';
 import Hero from '../src/components/Hero';
 import Highlights from '../src/components/Highlights';
@@ -12,11 +11,6 @@ import Footer from '../src/components/Footer';
 export default function Home() {
   return (
     <>
-      {/* Custom Cursor (Desktop only) */}
-      <div className="hidden lg:block">
-        <CursorFollower />
-      </div>
-      
       {/* Scroll Progress Indicator */}
       <ScrollProgress />
       

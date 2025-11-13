@@ -47,11 +47,13 @@ export default function NavBar() {
             className="flex items-center gap-3"
           >
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
-                <div className="relative w-full h-full bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center font-montserrat font-bold text-white text-xl">
-                  V
-                </div>
+              <div className="relative w-12 h-12 rounded-lg overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+                <img 
+                  src="/images/vyomgarud_logo.jpg" 
+                  alt="VyomGarud Logo" 
+                  className="relative w-full h-full object-cover rounded-lg"
+                />
               </div>
               <span className="font-montserrat font-bold text-xl bg-gradient-to-r from-whitesoft to-brand-orange bg-clip-text text-transparent">
                 VYOMGARUD
