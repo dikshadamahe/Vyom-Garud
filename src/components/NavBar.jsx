@@ -1,10 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
@@ -16,15 +26,37 @@ export default function NavBar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-charcoal/80 backdrop-blur-md border-b border-line-gray">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      className={`fixed top-0 left-0 w-full z-50 bg-charcoal/90 backdrop-blur-xl border-b border-line-gray transition-all duration-500 ${
+        scrolled ? 'py-2' : 'py-0'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className={`flex items-center justify-between transition-all duration-500 ${
+          scrolled ? 'h-16' : 'h-20'
+        }`}>
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <h1 className="text-2xl font-montserrat font-bold text-white">
+          <motion.div 
+            className="flex-shrink-0 flex items-center gap-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="relative w-10 h-10">
+              <Image
+                src="/images/vyomgarud_logo.jpg"
+                alt="VyomGarud Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <h1 className="text-2xl font-montserrat font-bold text-white tracking-tight">
               VyomGarud
             </h1>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -40,7 +72,7 @@ export default function NavBar() {
             ))}
             <a
               href="#contact"
-              className="px-6 py-2 bg-brand-orange text-white font-inter font-semibold text-sm rounded hover:bg-brand-orange/90 transition-all duration-300"
+              className="px-6 py-2 bg-brand-orange text-white font-inter font-semibold text-sm rounded hover:bg-brand-orange/90 hover:shadow-glow-orange transition-all duration-300"
             >
               Get Started
             </a>

@@ -35,36 +35,92 @@ export default function Highlights() {
 
   return (
     <section className="relative bg-charcoal py-24 overflow-hidden">
+      {/* Mech Hand Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-5"
+        >
+          <source src="/videos/video3_mech_hand.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Connecting Line Animation */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-orange/20 to-transparent transform -translate-x-1/2 z-[1] hidden md:block"></div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {highlights.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.2, ease: [0.4, 0, 0.2, 1] }}
               className="relative group"
             >
-              {/* Icon */}
-              <div className="mb-4">
-                <div className="w-14 h-14 bg-brand-orange/10 rounded flex items-center justify-center text-brand-orange group-hover:bg-brand-orange/20 transition-all duration-300">
-                  {item.icon}
+              {/* Animated Dot on Line */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
+                className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-brand-orange rounded-full shadow-glow-orange z-10 hidden md:block"
+              />
+
+              {/* HUD-Style Circular Icon Container */}
+              <motion.div
+                className="mb-6 relative"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative w-20 h-20 mx-auto">
+                  {/* Rotating Ring */}
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                    className="absolute inset-0 border-2 border-dashed border-brand-orange/30 rounded-full"
+                  />
+                  {/* Icon Container */}
+                  <div className="absolute inset-2 bg-gradient-to-br from-brand-orange/20 to-brand-orange/5 rounded-full flex items-center justify-center text-brand-orange group-hover:from-brand-orange/30 group-hover:to-brand-orange/10 group-hover:shadow-glow-orange transition-all duration-300">
+                    {item.icon}
+                  </div>
+                  {/* Pulse Effect */}
+                  <motion.div
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute inset-0 border-2 border-brand-orange rounded-full"
+                  />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
+              <h3 className="font-montserrat font-semibold text-xl text-white mb-3 text-center group-hover:text-brand-orange transition-colors duration-300">
                 {item.title}
               </h3>
 
-              {/* Line Accent */}
-              <div className="w-12 h-[2px] bg-brand-orange mb-4"></div>
+              {/* Animated Line Accent */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                className="w-16 h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent mb-4 mx-auto origin-center"
+              />
 
               {/* Description */}
-              <p className="font-inter text-base text-gray500 leading-relaxed">
+              <p className="font-inter text-base text-gray500 leading-relaxed text-center">
                 {item.description}
               </p>
+
+              {/* Corner Brackets */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-line-gray opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-line-gray opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-line-gray opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-line-gray opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.div>
           ))}
         </div>

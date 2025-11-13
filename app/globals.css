@@ -70,3 +70,132 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--steel-800);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-orange);
+}
+
+/* Selection */
+::selection {
+  background: var(--brand-orange);
+  color: var(--white);
+}
+
+/* HUD Utility Classes */
+.hud-corner-tl {
+  position: relative;
+}
+
+.hud-corner-tl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--brand-orange);
+  border-left: 2px solid var(--brand-orange);
+}
+
+.hud-corner-br {
+  position: relative;
+}
+
+.hud-corner-br::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--brand-orange);
+  border-right: 2px solid var(--brand-orange);
+}
+
+/* Tactical Grid Overlay */
+.tactical-grid {
+  background-image: 
+    linear-gradient(rgba(47, 47, 47, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 47, 47, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glowing Pulse Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 123, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 123, 0, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Scan Line Animation */
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scan-line {
+  animation: scan-line 3s linear infinite;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 123, 0, 0.2),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Video Performance */
+video {
+  object-fit: cover;
+  pointer-events: none;
+}

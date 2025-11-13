@@ -1,6 +1,7 @@
 'use client';
 
 import CapabilityCard from './CapabilityCard';
+import { motion } from 'framer-motion';
 
 export default function CapabilitiesGrid() {
   const capabilities = [
@@ -31,18 +32,60 @@ export default function CapabilitiesGrid() {
       id="capabilities"
       className="relative bg-charcoal py-32 overflow-hidden"
     >
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(47,47,47,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(47,47,47,0.1)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-5"
+        >
+          <source src="/videos/video2_rolling_elements.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Tactical Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(47,47,47,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(47,47,47,0.08)_1px,transparent_1px)] bg-[size:64px_64px] z-[1]"></div>
+
+      {/* Animated Scanning Line */}
+      <motion.div
+        animate={{ x: ['-100%', '200%'] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-orange/30 to-transparent z-[2]"
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6">
-            Capabilities
-          </h2>
-          <p className="font-inter text-lg text-gray500 max-w-2xl mx-auto">
-            Enterprise-grade UAV defense systems engineered for critical infrastructure protection
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
+          >
+            <span className="font-inter text-sm text-brand-orange font-medium">Our Capabilities</span>
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6"
+          >
+            Enterprise-Grade<br />Defense Systems
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-inter text-lg text-gray500 max-w-2xl mx-auto"
+          >
+            Advanced UAV defense engineered for critical infrastructure protection
+          </motion.p>
         </div>
 
         {/* Cards Grid */}
