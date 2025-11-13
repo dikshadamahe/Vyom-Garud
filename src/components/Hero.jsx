@@ -43,7 +43,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden pt-20 pb-32"
+      className="hero-section relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden pt-20 pb-32"
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
@@ -67,57 +67,57 @@ export default function Hero() {
             />
           </video>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-steel-900/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-steel-900/90 z-10"></div>
       </div>
 
       {/* Tactical Grid Overlay */}
-      <div className="absolute inset-0 z-[1] tactical-grid"></div>
+      <div className="absolute inset-0 z-[11] tactical-grid"></div>
       
-      {/* Animated HUD Rings */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-1/4 right-1/4 w-[700px] h-[700px] border border-line-gray/10 rounded-full z-[1]"
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-1/3 right-1/3 w-[550px] h-[550px] border border-brand-orange/15 rounded-full z-[1]"
-      />
-      
-      {/* Radar Sweep Animation */}
-      <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] z-[1] overflow-hidden rounded-full">
+      {/* Animated HUD Rings - Constrained */}
+      <div className="absolute top-1/2 right-1/4 w-60 h-60 -translate-y-1/2 z-20 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-0"
-          style={{ transformOrigin: '50% 50%' }}
-        >
-          <div
-            className="absolute top-1/2 left-1/2 w-full h-[2px] origin-left"
-            style={{
-              background: 'linear-gradient(90deg, rgba(255,123,0,0.6) 0%, rgba(255,123,0,0) 100%)',
-              transform: 'translate(-50%, -50%)',
-              boxShadow: '0 0 20px rgba(255,123,0,0.4)',
-            }}
-          />
-        </motion.div>
-      </div>
-      
-      {/* Blue Blob HUD Overlay */}
-      <div className="absolute inset-0 z-[1] opacity-10">
+          transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
+          className="hud-ring absolute inset-0 w-60 h-60 border border-line-gray/10 rounded-full opacity-20"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
+          className="hud-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-brand-orange/15 rounded-full opacity-20"
+        />
+        
+        {/* Radar Sweep Animation */}
+        <div className="absolute inset-0 w-60 h-60 overflow-hidden rounded-full">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+            className="absolute inset-0"
+            style={{ transformOrigin: '50% 50%' }}
+          >
+            <div
+              className="absolute top-1/2 left-1/2 w-full h-[2px] origin-left"
+              style={{
+                background: 'linear-gradient(90deg, rgba(255,123,0,0.6) 0%, rgba(255,123,0,0) 100%)',
+                transform: 'translate(-50%, -50%)',
+                boxShadow: '0 0 20px rgba(255,123,0,0.4)',
+              }}
+            />
+          </motion.div>
+        </div>
+        
+        {/* Blue Blob HUD Overlay - Constrained */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover mix-blend-screen"
+          className="decorative-video absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] object-cover mix-blend-screen opacity-[0.05]"
         >
           <source src="/videos/video4_blue_blob.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-24">
+      <div className="relative z-30 max-w-7xl mx-auto px-8 lg:px-12 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div
