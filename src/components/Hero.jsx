@@ -1,150 +1,158 @@
+// src/components/Hero.jsx
 'use client';
-
-import { m as motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import MagneticButton from './MagneticButton';
 import Image from 'next/image';
-import { useRef } from 'react';
 
 export default function Hero() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start']
-  });
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 150]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  const prefersReducedMotion = typeof window !== 'undefined' 
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
-    : false;
-
-  const y = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
-
-  const fadeUp = {
-    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  // Framer Motion variants for staggered animation
+  const containerStagger = {
+    animate: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
   };
-
-  const fadeUpDelay = {
-    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }
+  const fadeUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
   };
 
   return (
-    <section id="hero" className="hero-cinematic section" ref={sectionRef}>
-      {/* Tactical Grid Overlay */}
-      <div className="tactical-grid" aria-hidden="true"></div>
-
-      {/* Background Video - Desktop */}
-      <video 
-        className="hero-bg-media hidden md:block"
-        autoPlay 
-        muted 
-        loop 
-        playsInline
-        preload="metadata"
-        poster="/images/drone1.jpg"
-        aria-hidden="true"
-        tabIndex={-1}
-      >
-        <source src="/videos/video1_hero_drone.mp4" type="video/mp4" />
-      </video>
-
-      {/* Background Image - Mobile */}
-      <div className="md:hidden absolute inset-0 z-[1]">
-        <Image
-          src="/images/drone1.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-          aria-hidden="true"
-        />
+    <section 
+      id="hero" 
+      className="relative flex items-center justify-center h-screen min-h-[700px] w-full overflow-hidden"
+    >
+      {/* Video Background - Full Screen */}
+      <div className="absolute inset-0 z-0 w-full h-full">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          style={{ objectFit: 'cover' }}
+        >
+          <source src="/videos/video1_hero_drone.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/90 via-charcoal/70 to-charcoal z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-transparent to-charcoal/80 z-10" />
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="hero-overlay"></div>
-
-      {/* HUD Ring Decoration - with parallax */}
+      {/* Animated Grid Overlay */}
       <motion.div 
-        className="hud-ring hidden lg:block" 
+        className="absolute inset-0 z-[15] opacity-10 pointer-events-none"
         style={{ 
-          top: '15%', 
-          right: '10%', 
-          zIndex: 4,
-          y: useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -50])
-        }} 
-        aria-hidden="true"
-      ></motion.div>
+          backgroundImage: `linear-gradient(#ff7b00 1px, transparent 1px), linear-gradient(90deg, #ff7b00 1px, transparent 1px)`,
+          backgroundSize: '50px 50px',
+        }}
+        animate={{
+          backgroundPosition: ['0px 0px', '50px 50px'],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      />
 
-      {/* Watermark Logo */}
-      <div className="watermark-logo hidden xl:block" aria-hidden="true">
-        <Image 
-          src="/images/vyomgarud_logo.jpg" 
-          alt="" 
-          width={220} 
-          height={220}
-          sizes="220px"
-          className="select-none"
-        />
-      </div>
+      {/* Multiple Orange Accent Glows */}
+      <motion.div 
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] z-[15] pointer-events-none"
+        style={{ y: y1 }}
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] z-[15] pointer-events-none"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 1,
+        }}
+      />
 
-      {/* Gradient Bottom Fade */}
-      <div className="gradient-fade-bottom"></div>
-
-      {/* Hero Content - with parallax */}
-      <motion.div className="hero-content" style={{ y, opacity }}>
-        <div className="container-custom">
-          <div className="max-w-4xl">
+      {/* Content */}
             <motion.div
+        className="relative z-20 container-custom text-center"
               initial="initial"
               animate="animate"
+        variants={containerStagger}
+        style={{ y: y2, opacity }}
+      >
+        {/* PDF Req: Company Name 'VyomGarud' */}
+        <motion.p className="kicker mb-6" variants={fadeUp}>
+          VyomGarud Defense Systems
+        </motion.p>
+        
+        {/* Decorative Line */}
+        <motion.div 
+          className="w-24 h-1 bg-brand-orange mx-auto mb-8"
               variants={fadeUp}
+        />
+        
+        {/* PDF Req: Tagline */}
+        <motion.h1 className="headline-hero mb-8" variants={fadeUp}>
+          PRECISION <br />
+          <span className="bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 bg-clip-text text-transparent">
+            AUTONOMY
+          </span>
+        </motion.h1>
+        <motion.p className="body-text max-w-2xl mx-auto mb-10" variants={fadeUp}>
+          Military-grade counter-UAV solutions for mission-critical operations.
+          Engineering the future of airspace security.
+        </motion.p>
+        
+        {/* PDF Req: CTA (Call to Action) */}
+        <motion.div className="flex flex-col sm:flex-row gap-4 justify-center mb-16" variants={fadeUp}>
+          <MagneticButton href="#contact" className="btn-primary group">
+            Request Demo
+            <motion.svg 
+              className="w-5 h-5 ml-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              animate={{ x: [0, 3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              {/* Accent Line */}
-              <div className="accent-line"></div>
-
-              {/* Kicker */}
-              <motion.p className="kicker mb-6" variants={fadeUp}>VyomGarud</motion.p>
-
-              {/* Headline */}
-              <h1 className="headline-hero mb-6">
-                Defend Your<br />
-                <span className="text-brand-orange">Airspace</span>
-              </h1>
-
-              {/* Subheadline */}
-              <p className="body-text mb-10 max-w-2xl">
-                Military-grade counter-UAV defense systems for critical infrastructure. 
-                Trusted by defense forces and enterprise facilities worldwide.
-              </p>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </motion.svg>
+          </MagneticButton>
+          <MagneticButton href="#capabilities" className="btn-secondary">
+            Explore Capabilities
+          </MagneticButton>
             </motion.div>
 
+        {/* Scroll Indicator */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-5"
-              initial="initial"
-              animate="animate"
-              variants={fadeUpDelay}
-            >
-              <a
-                href="#contact"
-                className="btn-primary"
-              >
-                Request Demo
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-              <a
-                href="#capabilities"
-                className="btn-secondary"
-              >
-                Explore Technology
-              </a>
-            </motion.div>
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          variants={fadeUp}
+        >
+          <div className="w-6 h-10 border-2 border-whitesoft/30 rounded-full flex items-start justify-center p-2">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-brand-orange rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

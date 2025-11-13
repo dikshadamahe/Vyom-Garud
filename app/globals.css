@@ -1,13 +1,23 @@
 /* app/globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   body {
     @apply bg-charcoal text-whitesoft font-inter antialiased;
+  }
+  
+  /* Hide default cursor on desktop for custom cursor */
+  @media (min-width: 1024px) {
+    * {
+      cursor: none !important;
+    }
   }
 }
 
@@ -29,6 +39,9 @@
     /* For section headers */
     @apply font-montserrat font-bold text-4xl md:text-5xl text-whitesoft tracking-tight;
   }
+  .headline-3 {
+    @apply font-montserrat font-bold text-3xl text-whitesoft;
+  }
   .kicker {
     /* The orange "eyebrow" text */
     @apply font-inter font-semibold text-sm text-brand-orange uppercase tracking-widest;
@@ -40,7 +53,7 @@
 
   /* === UI ELEMENTS (The "Glass & Steel" feel) === */
   .glass-border {
-    @apply border border-whitesoft/10;
+    @apply border border-line-gray;
   }
   .glass-bg {
     @apply bg-steel-900/50 backdrop-blur-lg;
@@ -57,6 +70,15 @@
     @apply btn bg-brand-orange text-white hover:bg-brand-orange/90 hover:shadow-2xl hover:shadow-brand-orange/30;
   }
   .btn-secondary {
-    @apply btn bg-transparent border-2 border-whitesoft/20 text-whitesoft hover:border-whitesoft/40 hover:bg-whitesoft/10;
+    @apply btn bg-transparent border-2 border-line-gray text-whitesoft hover:border-whitesoft/40 hover:bg-whitesoft/10;
+  }
+
+  /* === FORM INPUTS === */
+  .form-input {
+    @apply w-full bg-steel-800 border-2 border-line-gray text-whitesoft rounded-lg px-6 py-4 transition-all duration-300 outline-none;
+    @apply focus:ring-2 focus:ring-brand-orange focus:border-brand-orange;
+  }
+  .form-input::placeholder {
+    @apply text-neutral-600;
   }
 }

@@ -15,6 +15,7 @@ module.exports = {
       },
     },
     extend: {
+      // THIS IS THE CORRECT, FLATTENED COLOR OBJECT
       colors: {
         charcoal: '#0B0B0B',
         'steel-900': '#111214',
@@ -25,36 +26,11 @@ module.exports = {
         white: '#FFFFFF',
         'brand-orange': '#FF7B00',
         'neutral-600': '#9aa0a6',
-        gray500: '#B9BCC0',
       },
       fontFamily: {
-        heading: ['Montserrat', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        'font-heading': ['Montserrat', 'system-ui', 'sans-serif'],
-        'font-body': ['Inter', 'system-ui', 'sans-serif'],
-      },
-      spacing: {
-        '4': '4px',
-        '8': '8px',
-        '12': '12px',
-        '16': '16px',
-        '20': '20px',
-        '24': '24px',
-        '32': '32px',
-        '48': '48px',
-        '64': '64px',
-        '96': '96px',
-      },
-      borderRadius: {
-        sm: '4px',
-        DEFAULT: '8px',
-        md: '12px',
-        lg: '16px',
-        xl: '20px',
-        '2xl': '24px',
+        // PDF Requirement: Poppins, Inter, or Montserrat
+        montserrat: ['Montserrat', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         '7xl': '80rem',
