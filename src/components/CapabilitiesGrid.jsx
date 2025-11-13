@@ -4,20 +4,26 @@ import { motion } from 'framer-motion';
 import CapabilityCard from './CapabilityCard';
 
 export default function CapabilitiesGrid() {
-  const staggerContainer = {
-    animate: {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
       transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       }
     }
   };
 
-  const cardFade = {
-    initial: { opacity: 0, y: 12 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+    }
   };
+
   const capabilities = [
     {
       title: 'RF Detection',
@@ -166,12 +172,12 @@ export default function CapabilitiesGrid() {
 
   return (
     <section id="capabilities" className="section bg-charcoal">
-      <div className="container">
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="max-w-3xl mb-16">
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4">
             Advanced <span className="text-brand-orange">Capabilities</span>
           </h2>
-          <p className="font-inter text-lg text-gray500">
+          <p className="font-inter text-lg text-neutral-600">
             Military-grade technology engineered for comprehensive airspace
             protection and threat neutralization.
           </p>
@@ -179,19 +185,18 @@ export default function CapabilitiesGrid() {
 
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
           {capabilities.map((capability, index) => (
-            <motion.div key={index} variants={cardFade}>
+            <motion.div key={index} variants={cardVariants}>
               <CapabilityCard
-              key={index}
-              title={capability.title}
-              icon={capability.icon}
-              description={capability.description}
-              image={capability.image}
+                title={capability.title}
+                icon={capability.icon}
+                description={capability.description}
+                image={capability.image}
               />
             </motion.div>
           ))}
