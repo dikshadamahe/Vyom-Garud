@@ -1,9 +1,9 @@
-import NavBar from '@/src/components/NavBar';
-import Hero from '@/src/components/Hero';
-import About from '@/src/components/About';
-import CapabilitiesGrid from '@/src/components/CapabilitiesGrid';
-import Highlights from '@/src/components/Highlights';
-import ContactForm from '@/src/components/ContactForm';
+import NavBar from '../src/components/NavBar';
+import Hero from '../src/components/Hero';
+import About from '../src/components/About';
+import CapabilitiesGrid from '../src/components/CapabilitiesGrid';
+import Highlights from '../src/components/Highlights';
+import ContactForm from '../src/components/ContactForm';
 
 export default function Home() {
   return (
