@@ -3,6 +3,29 @@
 import { motion } from 'framer-motion';
 
 export default function Highlights() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.25,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
   const highlights = [
     {
       icon: (
@@ -51,15 +74,19 @@ export default function Highlights() {
       {/* Connecting Line Animation */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-orange/20 to-transparent transform -translate-x-1/2 z-[1] hidden md:block"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <motion.div 
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {highlights.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2, ease: [0.4, 0, 0.2, 1] }}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -8 }}
               className="relative group"
             >
               {/* Animated Dot on Line */}
@@ -124,7 +151,7 @@ export default function Highlights() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

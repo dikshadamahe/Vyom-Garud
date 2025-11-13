@@ -4,6 +4,29 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function About() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
+
   return (
     <section
       id="about"
@@ -27,25 +50,25 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={itemVariants}
               className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
             >
               <span className="font-inter text-sm text-brand-orange font-medium">About Us</span>
             </motion.div>
 
-            <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6">
+            <motion.h2 
+              variants={itemVariants}
+              className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6"
+            >
               VyomGarud Defense Systems
-            </h2>
-            <div className="space-y-6">
+            </motion.h2>
+            <motion.div variants={itemVariants} className="space-y-6">
               <p className="font-inter text-base md:text-lg text-gray500 leading-relaxed">
                 VyomGarud delivers military-grade counter-UAV systems designed for defense agencies, 
                 critical infrastructure, and high-security facilities worldwide. Our solutions combine 
@@ -59,61 +82,46 @@ export default function About() {
               <p className="font-inter text-base md:text-lg text-gray500 leading-relaxed">
                 Trusted by defense forces in 12+ countries. Certified to NATO AQAP standards.
               </p>
-            </div>
+            </motion.div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 mt-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">
-                  5km
-                </div>
-                <div className="font-inter text-sm text-gray500">
-                  Detection Range
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">
-                  99.8%
-                </div>
-                <div className="font-inter text-sm text-gray500">
-                  Accuracy Rate
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">
-                  24/7
-                </div>
-                <div className="font-inter text-sm text-gray500">
-                  Active Defense
-                </div>
-              </motion.div>
-            </div>
+            <motion.div variants={itemVariants} className="grid grid-cols-3 gap-8 mt-12">
+              {[
+                { value: '5km', label: 'Detection Range' },
+                { value: '99.8%', label: 'Accuracy Rate' },
+                { value: '24/7', label: 'Active Defense' },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  transition={{ duration: 0.3 }}
+                  className="cursor-default"
+                >
+                  <div className="font-montserrat font-bold text-3xl text-brand-orange mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="font-inter text-sm text-gray500">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* Right Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            whileHover={{ scale: 1.02 }}
             className="relative"
           >
-            <div className="relative w-full aspect-square max-w-md mx-auto">
+            <motion.div 
+              className="relative w-full aspect-square max-w-md mx-auto"
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.4 }}
+            >
               {/* Drone Manufacturing Image */}
               <div className="absolute inset-0 rounded-lg overflow-hidden border border-line-gray">
                 <Image
@@ -140,7 +148,7 @@ export default function About() {
                 <div className="font-montserrat font-bold text-2xl text-white">12+</div>
                 <div className="font-inter text-xs text-gray500">Countries</div>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

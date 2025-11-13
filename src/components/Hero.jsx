@@ -12,7 +12,32 @@ export default function Hero() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const yFast = useTransform(scrollYProgress, [0, 1], ['0%', '80%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
 
   return (
     <section
@@ -49,6 +74,25 @@ export default function Hero() {
         className="absolute top-1/3 right-1/3 w-[550px] h-[550px] border border-brand-orange/15 rounded-full z-[1]"
       />
       
+      {/* Radar Sweep Animation */}
+      <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] z-[1] overflow-hidden rounded-full">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-0"
+          style={{ transformOrigin: '50% 50%' }}
+        >
+          <div
+            className="absolute top-1/2 left-1/2 w-full h-[2px] origin-left"
+            style={{
+              background: 'linear-gradient(90deg, rgba(255,123,0,0.6) 0%, rgba(255,123,0,0) 100%)',
+              transform: 'translate(-50%, -50%)',
+              boxShadow: '0 0 20px rgba(255,123,0,0.4)',
+            }}
+          />
+        </motion.div>
+      </div>
+      
       {/* Blue Blob HUD Overlay */}
       <div className="absolute inset-0 z-[1] opacity-10">
         <video
@@ -67,36 +111,34 @@ export default function Hero() {
           {/* Left Content */}
           <motion.div
             style={{ y, opacity }}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
             {/* Small Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              variants={itemVariants}
               className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
             >
-              <div className="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></div>
+              <motion.div 
+                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-2 h-2 bg-brand-orange rounded-full"
+              />
               <span className="font-inter text-sm text-brand-orange font-medium">Military-Grade Defense</span>
             </motion.div>
 
             <motion.h1
+              variants={itemVariants}
               className="font-montserrat font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
               Defend Your<br />
               <span className="text-brand-orange">Airspace</span>
             </motion.h1>
             
             <motion.p
+              variants={itemVariants}
               className="font-inter text-lg md:text-xl text-gray500 mb-10 leading-relaxed max-w-xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
             >
               Military-grade UAV detection and neutralization systems. 
               Trusted by defense forces and critical infrastructure worldwide.
@@ -104,10 +146,8 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div
+              variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
             >
               <motion.a
                 href="#contact"
@@ -130,29 +170,30 @@ export default function Hero() {
 
             {/* Stats Bar */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+              variants={itemVariants}
               className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-line-gray"
             >
-              <div>
-                <div className="font-montserrat font-bold text-2xl text-brand-orange mb-1">5km</div>
-                <div className="font-inter text-xs text-gray500">Detection Range</div>
-              </div>
-              <div>
-                <div className="font-montserrat font-bold text-2xl text-brand-orange mb-1">99.8%</div>
-                <div className="font-inter text-xs text-gray500">Accuracy</div>
-              </div>
-              <div>
-                <div className="font-montserrat font-bold text-2xl text-brand-orange mb-1">24/7</div>
-                <div className="font-inter text-xs text-gray500">Active Defense</div>
-              </div>
+              {[
+                { value: '5km', label: 'Detection Range' },
+                { value: '99.8%', label: 'Accuracy' },
+                { value: '24/7', label: 'Active Defense' },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="font-montserrat font-bold text-2xl text-brand-orange mb-1">{stat.value}</div>
+                  <div className="font-inter text-xs text-gray500">{stat.label}</div>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
 
           {/* Right Side - Drone Visual with Parallax */}
           <motion.div
             className="relative"
+            style={{ y: yFast, scale }}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
@@ -171,30 +212,25 @@ export default function Hero() {
               </div>
 
               {/* Corner Accents with Animation */}
-              <motion.div
-                className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-brand-orange"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-              />
-              <motion.div
-                className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-brand-orange"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.3 }}
-              />
-              <motion.div
-                className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-brand-orange"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
-              />
-              <motion.div
-                className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-brand-orange"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
-              />
+              {[
+                { position: 'top-0 left-0', borders: 'border-t-2 border-l-2', delay: 1.2 },
+                { position: 'top-0 right-0', borders: 'border-t-2 border-r-2', delay: 1.3 },
+                { position: 'bottom-0 left-0', borders: 'border-b-2 border-l-2', delay: 1.4 },
+                { position: 'bottom-0 right-0', borders: 'border-b-2 border-r-2', delay: 1.5 },
+              ].map((corner, index) => (
+                <motion.div
+                  key={index}
+                  className={`absolute ${corner.position} w-16 h-16 ${corner.borders} border-brand-orange`}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: corner.delay,
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                />
+              ))}
 
               {/* Pulsing Scan Lines */}
               <motion.div

@@ -4,6 +4,17 @@ import CapabilityCard from './CapabilityCard';
 import { motion } from 'framer-motion';
 
 export default function CapabilitiesGrid() {
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
   const capabilities = [
     {
       icon: '🎯',
@@ -57,36 +68,34 @@ export default function CapabilitiesGrid() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={headerVariants}
             className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
           >
             <span className="font-inter text-sm text-brand-orange font-medium">Our Capabilities</span>
           </motion.div>
           
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            variants={headerVariants}
+            transition={{ delay: 0.1 }}
             className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6"
           >
             Enterprise-Grade<br />Defense Systems
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={headerVariants}
+            transition={{ delay: 0.2 }}
             className="font-inter text-lg text-gray500 max-w-2xl mx-auto"
           >
             Advanced UAV defense engineered for critical infrastructure protection
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

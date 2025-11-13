@@ -1,52 +1,46 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function CapabilityCard({ icon, title, description, delay = 0 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay, ease: [0.4, 0, 0.2, 1] }}
-      whileHover={{ scale: 1.03, y: -8 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] }}
+      whileHover={{ scale: 1.03, y: -12 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className="relative group bg-steel-900 border border-line-gray rounded-lg p-8 hover:border-brand-orange/50 transition-all duration-500 hover:shadow-glow-orange"
     >
-      {/* Animated Corner Strokes */}
-      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}>
-        <motion.rect
-          x="0"
-          y="0"
-          width="100%"
-          height="100%"
-          rx="8"
-          fill="none"
-          stroke="url(#corner-gradient)"
-          strokeWidth="2"
-          initial={{ strokeDashoffset: 1000 }}
-          whileInView={{ strokeDashoffset: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2, delay: delay + 0.3, ease: 'linear' }}
-        />
-        <defs>
-          <linearGradient id="corner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,123,0,0)" />
-            <stop offset="50%" stopColor="rgba(255,123,0,0.5)" />
-            <stop offset="100%" stopColor="rgba(255,123,0,0)" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* Top Corner Accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
-        <motion.div
-          className="absolute top-0 right-0 w-full h-full border-t-2 border-r-2 border-brand-orange/0 group-hover:border-brand-orange transition-all duration-500 origin-top-right"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: delay + 0.2 }}
-        />
-      </div>
+      {/* Animated Corner Strokes - Four Corners */}
+      {[
+        { corner: 'top-0 left-0', borders: 'border-t-2 border-l-2', origin: 'top-left' },
+        { corner: 'top-0 right-0', borders: 'border-t-2 border-r-2', origin: 'top-right' },
+        { corner: 'bottom-0 left-0', borders: 'border-b-2 border-l-2', origin: 'bottom-left' },
+        { corner: 'bottom-0 right-0', borders: 'border-b-2 border-r-2', origin: 'bottom-right' },
+      ].map((item, index) => (
+        <div key={index} className={`absolute ${item.corner} w-12 h-12 overflow-hidden`}>
+          <motion.div
+            className={`absolute ${item.corner} w-full h-full ${item.borders} border-brand-orange/0 transition-colors duration-500`}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={isHovered ? { 
+              scale: 1, 
+              opacity: 1,
+              borderColor: 'rgba(255, 123, 0, 1)' 
+            } : { 
+              scale: 0, 
+              opacity: 0 
+            }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            style={{ transformOrigin: item.origin }}
+          />
+        </div>
+      ))}
 
       {/* Icon */}
       <motion.div
