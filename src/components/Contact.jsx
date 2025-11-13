@@ -22,7 +22,7 @@ export default function Contact() {
   const contactInfo = [
     { icon: '📧', label: 'Email', value: 'dikshadamahe25@gmail.com  ' },
     { icon: '📞', label: 'Phone', value: '+91 9770925370' },
-    { icon: '📍', label: 'Location', value: 'M.P., India' },
+    { icon: '📍', label: 'Location', value: 'VIT Bhopal University, M.P, India' },
   ];
 
   return (
