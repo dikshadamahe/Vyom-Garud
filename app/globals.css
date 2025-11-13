@@ -4,25 +4,45 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* CSS Reset */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Root Tokens */
+:root {
+  --color-charcoal: #0B0B0B;
+  --color-steel-900: #111214;
+  --color-steel-800: #1f1f23;
+  --color-line-gray: #2f2f33;
+  --color-whitesoft: #ECEFF1;
+  --color-brand-orange: #FF7B00;
+  --color-neutral-600: #9aa0a6;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 96px;
+}
+
 html {
-  background-color: #0C0C0C;
-  color: #F5F5F7;
-  font-family: 'Montserrat', sans-serif;
+  background-color: var(--color-charcoal);
+  color: var(--color-whitesoft);
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
-  background-color: #0C0C0C;
-  color: #F5F5F7;
-  font-family: 'Montserrat', sans-serif;
+  background-color: var(--color-charcoal);
+  color: var(--color-whitesoft);
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -31,7 +51,10 @@ body {
 
 /* Section Utilities */
 .section {
-  padding: 6rem 0;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
@@ -46,6 +69,7 @@ body {
 .hero-section {
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 /* Background Video Utility */
@@ -56,6 +80,7 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  animation: slowZoom 20s ease-in-out infinite alternate;
 }
 
 /* Dark Overlay Utility */
@@ -74,31 +99,11 @@ body {
 
 /* Media Elements */
 img,
-video,
-svg {
-  max-width: 100%;
-  display: block;
-}
-
 video {
+  max-width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-}
-
-/* Links */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Scroll Margin for Anchor Links */
-section {
-  scroll-margin-top: 6rem;
-}
-
-/* Focus Styles */
-*:focus-visible {
-  outline: 2px solid #FF7B00;
-  outline-offset: 2px;
 }
 
 /* Safety constraints to prevent oversized decorative elements */
@@ -116,21 +121,33 @@ svg {
   height: auto !important;
 }
 
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
 .remove-decorative {
   display: none !important;
 }
 
-.section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  position: relative;
-  overflow: hidden;
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scroll Margin for Anchor Links */
+section {
+  scroll-margin-top: 6rem;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
+/* Subtle Video Zoom Animation */
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
