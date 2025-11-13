@@ -1,4 +1,22 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 export default function Highlights() {
+  const staggerContainer = {
+    animate: {
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardFade = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  };
   const highlights = [
     {
       icon: (
@@ -32,11 +50,18 @@ export default function Highlights() {
   return (
     <section className="section bg-charcoal">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {highlights.map((item, index) => (
-            <div
+            <motion.div
               key={index}
               className="text-center"
+              variants={cardFade}
             >
               {/* Icon */}
               <div className="mb-6 flex justify-center">
@@ -54,9 +79,9 @@ export default function Highlights() {
               <p className="font-inter text-base text-gray500 leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

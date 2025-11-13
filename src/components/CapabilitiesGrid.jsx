@@ -1,6 +1,23 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import CapabilityCard from './CapabilityCard';
 
 export default function CapabilitiesGrid() {
+  const staggerContainer = {
+    animate: {
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardFade = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  };
   const capabilities = [
     {
       title: 'RF Detection',
@@ -154,17 +171,25 @@ export default function CapabilitiesGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {capabilities.map((capability, index) => (
-            <CapabilityCard
+            <motion.div key={index} variants={cardFade}>
+              <CapabilityCard
               key={index}
               title={capability.title}
               icon={capability.icon}
               description={capability.description}
               image={capability.image}
-            />
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,6 +1,30 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Hero() {
+  const sectionFade = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const childFade = {
+    initial: { opacity: 0, y: 8 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  };
+
   return (
     <section className="hero-section relative flex min-h-screen items-center pt-32 pb-24">
       {/* Background Video - Desktop */}
@@ -39,29 +63,46 @@ export default function Hero() {
       {/* Main Content */}
       <div className="content-front">
         <div className="container">
-          <div className="max-w-3xl">
+          <motion.div 
+            className="max-w-3xl"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6">
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 rounded-full mb-6"
+              variants={childFade}
+            >
               <div className="w-2 h-2 bg-brand-orange rounded-full animate-pulse"></div>
               <span className="font-inter text-sm text-brand-orange font-medium uppercase tracking-wide">
                 Military-Grade Defense
               </span>
-            </div>
+            </motion.div>
 
             {/* Headline */}
-            <h1 className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6">
+            <motion.h1 
+              className="font-montserrat font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight uppercase mb-6"
+              variants={childFade}
+            >
               Defend Your<br />
               <span className="text-brand-orange">Airspace</span>
-            </h1>
+            </motion.h1>
 
             {/* Subheading */}
-            <p className="font-inter text-lg sm:text-xl text-gray500 mb-10 leading-relaxed max-w-2xl">
+            <motion.p 
+              className="font-inter text-lg sm:text-xl text-gray500 mb-10 leading-relaxed max-w-2xl"
+              variants={childFade}
+            >
               Military-grade UAV detection and neutralization systems. 
               Trusted by defense forces and critical infrastructure worldwide.
-            </p>
+            </motion.p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 mb-16"
+              variants={childFade}
+            >
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-brand-orange text-white font-inter font-semibold text-base rounded hover:bg-brand-orange/90 transition-all duration-300"
@@ -74,10 +115,13 @@ export default function Hero() {
               >
                 View Capabilities
               </a>
-            </div>
+            </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-line-gray">
+            <motion.div 
+              className="grid grid-cols-3 gap-8 pt-8 border-t border-line-gray"
+              variants={childFade}
+            >
               <div>
                 <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">5km</div>
                 <div className="font-inter text-sm text-gray500">Detection Range</div>
@@ -90,8 +134,8 @@ export default function Hero() {
                 <div className="font-montserrat font-bold text-3xl text-brand-orange mb-1">24/7</div>
                 <div className="font-inter text-sm text-gray500">Active Defense</div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
