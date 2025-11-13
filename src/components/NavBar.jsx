@@ -48,6 +48,7 @@ export default function NavBar() {
               alt="VyomGarud"
               width={48}
               height={48}
+              sizes="48px"
               className={`transition-all duration-300 ${
                 isCompact ? 'h-10 w-10' : 'h-12 w-12'
               } object-contain`}

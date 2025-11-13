@@ -33,6 +33,7 @@ export default function Hero() {
           src="/images/drone1.jpg"
           alt=""
           fill
+          sizes="100vw"
           className="object-cover"
           priority
           aria-hidden="true"
@@ -49,6 +50,7 @@ export default function Hero() {
           alt="" 
           width={180} 
           height={180}
+          sizes="180px"
           className="select-none"
         />
       </div>

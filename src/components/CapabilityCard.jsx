@@ -10,7 +10,7 @@ export default function CapabilityCard({ title, icon, description, image }) {
             src={image}
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-steel-900 via-steel-900/60 to-transparent"></div>

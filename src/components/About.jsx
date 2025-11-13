@@ -61,7 +61,7 @@ export default function About() {
                 src="/images/drone2.jpg"
                 alt="VyomGarud Defense Technology"
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 via-transparent to-steel-900/30" aria-hidden="true"></div>
