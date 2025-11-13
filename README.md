@@ -236,4 +236,4 @@ This project was created for educational and assessment purposes.
 
 ---
 
-**Built with attention to detail and modern web technologies.**
+**Built with attention to detail and love By Diksha Damahe.**
