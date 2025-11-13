@@ -30,21 +30,20 @@ export default function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      className={`fixed top-0 left-0 w-full z-50 bg-charcoal/90 backdrop-blur-xl border-b border-line-gray transition-all duration-500 ${
-        scrolled ? 'py-2' : 'py-0'
-      }`}
+      className={`fixed top-0 left-0 w-full z-[100] bg-charcoal/95 backdrop-blur-xl border-b border-line-gray transition-all duration-500`}
     >
       <div className="max-w-7xl mx-auto px-8 lg:px-12">
         <div className={`flex items-center justify-between transition-all duration-500 ${
           scrolled ? 'h-16' : 'h-20'
         }`}>
           {/* Logo */}
-          <motion.div 
+          <motion.a
+            href="#hero"
             className="flex-shrink-0 flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative w-10 h-10">
+            <div className={`relative transition-all duration-500 ${scrolled ? 'w-10 h-10' : 'w-12 h-12'}`} style={{ maxHeight: '48px' }}>
               <Image
                 src="/images/vyomgarud_logo.jpg"
                 alt="VyomGarud Logo"
@@ -53,10 +52,10 @@ export default function NavBar() {
                 priority
               />
             </div>
-            <h1 className="text-2xl font-montserrat font-bold text-white tracking-tight">
+            <h1 className={`font-montserrat font-bold text-white tracking-tight transition-all duration-500 ${scrolled ? 'text-xl' : 'text-2xl'}`}>
               VyomGarud
             </h1>
-          </motion.div>
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
