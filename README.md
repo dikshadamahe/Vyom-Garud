@@ -283,7 +283,7 @@ This project fulfills all requirements from the Web Developer Intern Assessment:
 The site prioritizes visual impact and user experience over backend complexity, as appropriate for a frontend assessment. All interactive elements provide visual feedback, and the navigation creates a smooth single-page application experience.
 
 ### Code Organization
-Components are modular and reusable. The design system is centralized in `globals.css` with custom Tailwind utilities. This approach demonstrates understanding of component architecture and maintainable CSS practices.
+The Components are modular and reusable. The design system is centralized in `globals.css` with custom Tailwind utilities. This approach demonstrates understanding of component architecture and maintainable CSS practices.
 
 ## Credits
 
